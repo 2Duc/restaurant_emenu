@@ -1,0 +1,532 @@
+[
+ {
+  "id": "SQLI-01",
+  "type": "SQL Injection",
+  "payload": "18 tham số x 6 payload (q, search, date_from, table_id, order_id, category, ...)",
+  "expected": "Không 500, không lộ dữ liệu/SQL error",
+  "actual": "Sạch",
+  "ok": true,
+  "severity": "-",
+  "rec": "Ép kiểu/validate tham số lọc (table_id, order_id, category, rating, limit) bằng serializer/FilterSet; trả 400 thay vì 500."
+ },
+ {
+  "id": "SQLI-02",
+  "type": "SQL Injection (UNION)",
+  "payload": "GET /api/menu-items/?search=' UNION SELECT username,password,... FROM api_useraccount--",
+  "expected": "200 danh sách rỗng, không lộ hash",
+  "actual": "HTTP 200, 0 bản ghi, lộ hash: False",
+  "ok": true,
+  "severity": "-",
+  "rec": "Dùng ORM tham số hoá (đang đúng)."
+ },
+ {
+  "id": "SQLI-03",
+  "type": "SQL Injection (login)",
+  "payload": "username=' OR 1=1--, admin'--; password=' OR '1'='1",
+  "expected": "401/400, không 200/500",
+  "actual": "mã trả về: [401]",
+  "ok": true,
+  "severity": "-",
+  "rec": "Giữ authenticate() của Django (tham số hoá)."
+ },
+ {
+  "id": "SQLI-04",
+  "type": "SQL Injection (path id)",
+  "payload": "GET /api/orders|menu-items|tables|payments/<1 OR 1=1 | 1' | UNION...>/",
+  "expected": "404 (không khớp route), không 500",
+  "actual": "mã: [404]",
+  "ok": true,
+  "severity": "-",
+  "rec": "Route dùng ký tự thường/số nguyên — đúng."
+ },
+ {
+  "id": "SQLI-05",
+  "type": "SQL Injection (body JSON)",
+  "payload": "table_id/menu_item_id/rating/order_id/code = '1 OR 1=1', note='); DROP TABLE...",
+  "expected": "400/403/404, không 500",
+  "actual": "[400, 400, 200, 400, 400, 400, 400]",
+  "ok": true,
+  "severity": "-",
+  "rec": "ReviewViewSet.create: validate order_item là số nguyên trước khi filter (trả 400 thay vì 500)."
+ },
+ {
+  "id": "SQLI-06",
+  "type": "SQL Injection (DROP)",
+  "payload": "Sau mọi payload DROP TABLE, bảng api_order còn hoạt động",
+  "expected": "GET đơn vẫn 200",
+  "actual": "HTTP 200",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "XSS-01",
+  "type": "XSS lưu trữ (ghi chú món)",
+  "payload": "<script>alert(1)</script> | \"><img src=x onerror=alert(1)>",
+  "expected": "Lưu dạng text, API trả application/json (không render HTML)",
+  "actual": "POST [200, 200, 200]; lưu raw=True; Content-Type=application/json",
+  "ok": true,
+  "severity": "-",
+  "rec": "Giữ JSON; FE React escape tự động. Cân nhắc strip thẻ HTML phía server cho ghi chú."
+ },
+ {
+  "id": "XSS-02",
+  "type": "XSS lưu trữ (tên/mô tả món, tên danh mục)",
+  "payload": "name=<script>alert(1)</script> description=\"><img src=x onerror=alert(1)> category.name=\"><img src=x onerror=alert(1)>",
+  "expected": "API trả JSON text",
+  "actual": "tạo danh mục 400, món 201; Content-Type=application/json",
+  "ok": true,
+  "severity": "-",
+  "rec": "Như trên; escape ở FE."
+ },
+ {
+  "id": "XSS-03",
+  "type": "XSS lưu trữ (nhận xét đánh giá)",
+  "payload": "comment=\"><img src=x onerror=alert(1)>",
+  "expected": "Lưu text, trả JSON",
+  "actual": "POST /reviews/ -> 201; body={\"id\":3,\"order_item\":44,\"menu_item\":2,\"menu_item_name\":\"Chả ",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "XSS-04",
+  "type": "XSS lưu trữ (gọi nhân viên)",
+  "payload": "message=<script>alert(1)</script>",
+  "expected": "Lưu text, trả JSON",
+  "actual": "HTTP 201; CT=application/json",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "XSS-05",
+  "type": "XSS phản chiếu (Browsable API)",
+  "payload": "GET /api/menu-items/ Accept: text/html chứa tên món <script>",
+  "expected": "HTML escape (&lt;script&gt;) hoặc không có Browsable API",
+  "actual": "HTTP 406, CT=application/json, script thô trong HTML=False, browsable=False",
+  "ok": true,
+  "severity": "-",
+  "rec": "Chỉ bật JSONRenderer ở production (DEFAULT_RENDERER_CLASSES) để tắt Browsable API."
+ },
+ {
+  "id": "XSS-07",
+  "type": "XSS DOM (frontend)",
+  "payload": "grep dangerouslySetInnerHTML / innerHTML / eval / document.write trong frontend/src",
+  "expected": "Không có",
+  "actual": "Không thấy",
+  "ok": true,
+  "severity": "-",
+  "rec": "Dùng JSX escape mặc định."
+ },
+ {
+  "id": "XSS-08",
+  "type": "Lưu JWT ở localStorage",
+  "payload": "frontend/src/services/api.js dùng localStorage cho access/refresh token",
+  "expected": "Token trong cookie HttpOnly (khuyến nghị)",
+  "actual": "Token trong localStorage — nếu có XSS thì bị đánh cắp",
+  "ok": null,
+  "severity": "Thấp",
+  "rec": "Giữ CSP chặt; cân nhắc cookie HttpOnly+SameSite hoặc access token sống ngắn."
+ },
+ {
+  "id": "AUTH-01",
+  "type": "Truy cập không token",
+  "payload": "17 endpoint quản trị/nhân viên không Authorization",
+  "expected": "401/403",
+  "actual": "sai: không",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "AUTH-02",
+  "type": "Token role thấp (PV/BEP)",
+  "payload": "Phục vụ & Bếp gọi API chỉ QL/AD (users, reports, audit-logs, payments, tạo danh mục/món/bàn/khuyến mãi, refund)",
+  "expected": "403",
+  "actual": "sai: không",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "AUTH-03",
+  "type": "Token Bếp ngoài vai trò",
+  "payload": "Bếp: list staff-calls, xác nhận tiền mặt, đổi trạng thái đơn",
+  "expected": "403",
+  "actual": "{'BEP GET /staff-calls/': 403, 'BEP confirm-cash': 403, 'BEP PATCH order status': 403}",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "AUTH-04",
+  "type": "IDOR khách bàn A -> bàn B",
+  "payload": "Header X-Table-Id: 1 truy cập đơn/thanh toán/gọi NV/khuyến mãi/huỷ món của bàn 2",
+  "expected": "403 cho mọi thao tác",
+  "actual": "sai: không; chi tiết {'order other table': 403, 'order no header': 403, 'add-items other': 403, 'create order other table': 403, 'apply-promo other': 403, 'cancel item other': 403, 'staff-call other': 403, 'payment create other': 403, 'payment detail other': 403, 'payment sync other': 403, 'reviews list other': 0}",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "AUTH-05",
+  "type": "IDOR giả mạo header bàn",
+  "payload": "Kẻ tấn công tự gửi X-Table-Id: 2 / X-Table-Token rác / token ký sai khoá / dò mã k, rồi GET /api/orders/2/ và POST thanh toán",
+  "expected": "403 (cần token phiên bàn ký, lấy bằng mã k bí mật trong QR)",
+  "actual": "mã trả về [403, 403, 403, 403, 403]",
+  "ok": true,
+  "severity": "-",
+  "rec": "Cấp token phiên bàn ký (QR chứa mã bí mật ngẫu nhiên, hết hạn theo phiên), kiểm tra token thay vì header X-Table-Id tự khai."
+ },
+ {
+  "id": "AUTH-06",
+  "type": "ID tuần tự dễ đoán",
+  "payload": "Đơn/bàn/thanh toán dùng id số nguyên tăng dần",
+  "expected": "Khó đoán (UUID) hoặc có kiểm soát truy cập chặt",
+  "actual": "đơn 0..2: [403, 200]",
+  "ok": null,
+  "severity": "Thấp",
+  "rec": "Dùng mã đơn ngẫu nhiên (UUID/slug) hiển thị cho khách."
+ },
+ {
+  "id": "AUTH-07",
+  "type": "Leo thang vai trò",
+  "payload": "PV PATCH /users/<mình> {role:AD}; PV gửi is_superuser; QL tự nâng AD; QL tạo user AD; QL tạo user kèm is_superuser",
+  "expected": "403/400, không tạo được AD/superuser",
+  "actual": "PV->AD 403, PV superuser 403, QL tự->AD 400, QL tạo AD 400, QL tạo is_superuser 201",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "AUTH-08",
+  "type": "Mật khẩu yếu",
+  "payload": "Tạo nhân viên với password=1234",
+  "expected": "400 (validator)",
+  "actual": "HTTP 400",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "AUTH-09",
+  "type": "Lộ hash mật khẩu qua API",
+  "payload": "GET /api/users/ chứa trường password/hash",
+  "expected": "Không có",
+  "actual": "có \"password\" trong JSON: False",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "AUTH-10",
+  "type": "JWT giả/hết hạn/alg none",
+  "payload": "sai khoá, alg=none, sửa role giữ chữ ký, hết hạn, user không tồn tại, refresh làm access",
+  "expected": "Tất cả 401 (đối chứng 200)",
+  "actual": "{'sai khoá HS256': 401, 'alg none': 401, 'sửa payload giữ chữ ký': 401, 'rỗng chữ ký': 401, 'rác': 401, 'hết hạn (đúng khoá)': 401, 'hợp lệ đúng khoá (đối chứng)': 200, 'user_id không tồn tại': 401, 'token_type=refresh làm access': 401, 'refresh làm access': 401}",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "AUTH-11",
+  "type": "Refresh token xoay vòng",
+  "payload": "Dùng lại refresh token cũ sau khi đã xoay",
+  "expected": "401 (blacklist)",
+  "actual": "lần 1 có access=True, lần 2 -> 401",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "WS-01",
+  "type": "WebSocket phân quyền",
+  "payload": "Kết nối ws/kitchen_orders/, ws/staff_orders/ không token / token giả",
+  "expected": "Bị đóng (4403)",
+  "actual": "{'kitchen không token': 'từ chối (InvalidStatus)', 'staff không token': 'từ chối (InvalidStatus)', 'kitchen token giả': 'từ chối (InvalidStatus)'}",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "WS-02",
+  "type": "WebSocket IDOR (kênh bàn)",
+  "payload": "Kết nối ws/table_2/ không token / token rác / token bàn 1 rồi bàn 2 đặt món; đối chứng token đúng bàn 2",
+  "expected": "Chỉ token đúng bàn được vào; không nhận dữ liệu đơn bàn khác",
+  "actual": "{'table_2 không token': 'từ chối (InvalidStatus)', 'table_2 token rác': 'từ chối (InvalidStatus)', 'table_2 token bàn 1': 'từ chối (InvalidStatus)', 'table_2 token đúng': 'MỞ'}; nhận new_order của bàn 2 khi chưa xác thực: False",
+  "ok": true,
+  "severity": "-",
+  "rec": "Xác thực kênh table_<id> bằng token phiên bàn (ký) hoặc chỉ gửi sự kiện tối thiểu (không kèm ghi chú/giá)."
+ },
+ {
+  "id": "BIZ-01",
+  "type": "Thao túng giá/mass assignment",
+  "payload": "POST /orders/ kèm unit_price=1, total_amount=1, status=completed",
+  "expected": "Server bỏ qua, tính theo giá menu",
+  "actual": "tổng=150000.0 (kỳ vọng 150000.0); status=pending",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "BIZ-02",
+  "type": "Số lượng không hợp lệ",
+  "payload": "quantity = 0, -5, 1000",
+  "expected": "400",
+  "actual": "[400, 400, 400]",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "BIZ-03",
+  "type": "Đánh giá ngoài khoảng",
+  "payload": "rating=99",
+  "expected": "400",
+  "actual": "HTTP 400",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "SEC-01",
+  "type": "Lộ bí mật trong frontend",
+  "payload": "Tìm giá trị thật của DB_PASSWORD, DJANGO_SECRET_KEY, VNPAY_HASH_SECRET_KEY, VNPAY_TMN_CODE + tên VNPAY_HASH_SECRET/DJANGO_SECRET_KEY trong frontend/dist, src, public (71 file)",
+  "expected": "Không có",
+  "actual": "Không thấy",
+  "ok": true,
+  "severity": "-",
+  "rec": "Chỉ đưa biến VITE_* công khai vào bundle."
+ },
+ {
+  "id": "SEC-02",
+  "type": "backend/.env bị đóng gói/commit",
+  "payload": "Kiểm tra .gitignore / .dockerignore có loại .env",
+  "expected": "Có ở .gitignore và backend/.dockerignore",
+  "actual": "{'.gitignore': True, 'backend/.gitignore': None, 'backend/.dockerignore': True, 'frontend/.dockerignore': True, '.dockerignore': None}",
+  "ok": true,
+  "severity": "-",
+  "rec": "Thêm .gitignore ở thư mục gốc & backend/ với dòng \".env\"; .env chứa mật khẩu DB và khoá VNPay."
+ },
+ {
+  "id": "SEC-03",
+  "type": "Path traversal lấy .env / mã nguồn",
+  "payload": "GET /media/../.env, /media/%2e%2e/.env, /static/../.env, /media/../db.sqlite3 ...",
+  "expected": "404, không trả file",
+  "actual": "Không lộ",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "SEC-04",
+  "type": "SECRET_KEY mặc định/yếu",
+  "payload": "settings: DEBUG=0 mà SECRET_KEY = _DEV_KEY => ImproperlyConfigured; so sánh khoá trong .env với khoá dev",
+  "expected": "Khoá riêng, >= 50 ký tự, fail-closed khi DEBUG=0",
+  "actual": "fail-closed khi DEBUG=0: True; .env dùng khoá dev: False; độ dài khoá .env: 50",
+  "ok": true,
+  "severity": "-",
+  "rec": "Sinh khoá mới bằng get_random_secret_key() cho production."
+ },
+ {
+  "id": "SEC-05",
+  "type": "DEBUG bật trong .env",
+  "payload": "backend/.env: DJANGO_DEBUG",
+  "expected": "0 khi triển khai",
+  "actual": ".env máy dev đặt DJANGO_DEBUG=1 (chấp nhận khi chạy local; server quét chạy DEBUG=0)",
+  "ok": null,
+  "severity": "Thấp",
+  "rec": "Không dùng .env dev cho production."
+ },
+ {
+  "id": "CFG-04",
+  "type": "Lộ stacktrace (DEBUG)",
+  "payload": "Gây 404/400/lỗi tham số, đọc nội dung lỗi",
+  "expected": "Không có stacktrace/đường dẫn file",
+  "actual": "mã [404, 400, 404, 400, 400]; lộ stacktrace=False",
+  "ok": true,
+  "severity": "-",
+  "rec": "Chạy production với DJANGO_DEBUG=0."
+ },
+ {
+  "id": "CFG-05",
+  "type": "Xử lý tham số sai kiểu",
+  "payload": "GET /api/orders/?table_id=abc",
+  "expected": "400, không phải 500",
+  "actual": "HTTP 400",
+  "ok": true,
+  "severity": "-",
+  "rec": "Validate table_id thành int trước khi filter."
+ },
+ {
+  "id": "CFG-06",
+  "type": "Host header giả",
+  "payload": "Host: evil.example.com",
+  "expected": "400 (ALLOWED_HOSTS)",
+  "actual": "HTTP 400",
+  "ok": true,
+  "severity": "-",
+  "rec": "Giữ ALLOWED_HOSTS cụ thể."
+ },
+ {
+  "id": "CFG-07",
+  "type": "Trang /admin/",
+  "payload": "GET /admin/login/",
+  "expected": "Không công khai hoặc có bảo vệ brute-force",
+  "actual": "HTTP 200 — trang đăng nhập admin công khai, không giới hạn thử mật khẩu",
+  "ok": null,
+  "severity": "Thấp",
+  "rec": "Đổi đường dẫn admin / chặn theo IP / thêm django-axes; bắt buộc mật khẩu mạnh."
+ },
+ {
+  "id": "CFG-08",
+  "type": "Upload file độc (html/svg/php)",
+  "payload": "Tải lên image_url: shell.html, x.svg (script), shell.php (image/png), shell.php.png, real.php (PNG hợp lệ tên .php)",
+  "expected": "400 (chỉ ảnh hợp lệ)",
+  "actual": "{'shell.html': 400, 'x.svg': 400, 'shell.php': 400, 'shell.php.png': 400, 'real.php': 400, 'poly.png': 201}",
+  "ok": true,
+  "severity": "-",
+  "rec": "ImageField + Pillow đang chặn; giữ nguyên, thêm danh sách phần mở rộng cho phép."
+ },
+ {
+  "id": "CFG-09",
+  "type": "Polyglot ảnh + mã",
+  "payload": "PNG hợp lệ + nối <?php ... ?> / <script> (poly.png)",
+  "expected": "Phục vụ đúng image/png, nosniff, không thực thi",
+  "actual": "tải lên 201; phục vụ Content-Type=image/png; nosniff=nosniff",
+  "ok": true,
+  "severity": "-",
+  "rec": "Phục vụ media qua CDN/nginx với nosniff; hệ thống không thực thi PHP nên rủi ro thấp; có thể re-encode ảnh khi upload."
+ },
+ {
+  "id": "CFG-10",
+  "type": "Upload quá dung lượng",
+  "payload": "PNG > 5MB",
+  "expected": "400",
+  "actual": "HTTP 400",
+  "ok": true,
+  "severity": "-",
+  "rec": "Serializer đã giới hạn 5MB."
+ },
+ {
+  "id": "CFG-11",
+  "type": "CORS origin lạ",
+  "payload": "Origin: http://evil.example.com / null (preflight + GET)",
+  "expected": "Không có Access-Control-Allow-Origin cho origin lạ; origin FE được phép",
+  "actual": "{'http://evil.example.com': (None, None), 'null': (None, None), 'http://localhost:5173': ('http://localhost:5173', 'true')}; GET origin lạ -> ACAO=None",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "CFG-12",
+  "type": "Header bảo mật",
+  "payload": "GET /api/menu-items/ — X-Frame-Options, X-Content-Type-Options, Referrer-Policy, COOP",
+  "expected": "Có đủ",
+  "actual": "X-Frame-Options=DENY, nosniff=nosniff, Referrer-Policy=same-origin; thiếu: không",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "CFG-13",
+  "type": "HSTS / HTTPS",
+  "payload": "GET với X-Forwarded-Proto: https — Strict-Transport-Security; CSP; SECURE_SSL_REDIRECT",
+  "expected": "Có HSTS + CSP khi chạy https",
+  "actual": "HSTS=max-age=31536000; CSP=None",
+  "ok": true,
+  "severity": "-",
+  "rec": "Đặt SECURE_HSTS_SECONDS (>=31536000), SECURE_SSL_REDIRECT=True khi deploy HTTPS; thêm CSP ở frontend host (nginx/Vercel)."
+ },
+ {
+  "id": "PAY-01",
+  "type": "mock-callback ở chế độ vnpay",
+  "payload": "POST http://127.0.0.1:8031/api/payments/mock-callback/ (server PAYMENT_GATEWAY_MODE=vnpay)",
+  "expected": "404",
+  "actual": "HTTP 404",
+  "ok": true,
+  "severity": "-",
+  "rec": "Production bắt buộc đặt PAYMENT_GATEWAY_MODE=vnpay + khoá VNPay; mặc định \"mock\" khi thiếu khoá là nguy hiểm — nên fail-closed khi DEBUG=0."
+ },
+ {
+  "id": "PAY-02",
+  "type": "mock-callback ở chế độ mock",
+  "payload": "Server mock: khách không token POST /payments/mock-callback/ {txn_ref, result:success} cho giao dịch chờ thanh toán",
+  "expected": "Chỉ dùng demo; production phải tắt",
+  "actual": "HTTP 200; đơn chuyển sang \"completed\" mà không trả tiền (hợp lệ ở mock, NGUY HIỂM nếu lọt lên production)",
+  "ok": null,
+  "severity": "Trung bình",
+  "rec": "Không bao giờ chạy mock ở production; thêm kiểm tra settings.DEBUG hoặc biến ALLOW_MOCK_GATEWAY=1."
+ },
+ {
+  "id": "PAY-03",
+  "type": "IPN chữ ký sai",
+  "payload": "GET /payments/vnpay-ipn/ với vnp_SecureHash=deadbeef, ResponseCode=00 (và thiếu chữ ký)",
+  "expected": "RspCode 97, trạng thái giao dịch không đổi",
+  "actual": "{'RspCode': '97', 'Message': 'Invalid signature'}; thiếu chữ ký {'RspCode': '97', 'Message': 'Invalid signature'}; payment sau đó=pending",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "PAY-04",
+  "type": "IPN chữ ký đúng nhưng sai số tiền",
+  "payload": "IPN ký bằng khoá giả của server thử, vnp_Amount=100 (sai)",
+  "expected": "RspCode 04, không ghi nhận thanh toán",
+  "actual": "{'RspCode': '04', 'Message': 'Invalid amount'}; payment=pending",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "PAY-05",
+  "type": "vnpay-return chữ ký sai",
+  "payload": "GET /payments/vnpay-return/ chữ ký giả",
+  "expected": "Không đổi trạng thái giao dịch",
+  "actual": "HTTP 302; payment=pending",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "PAY-06",
+  "type": "Khách tự xác nhận tiền mặt",
+  "payload": "Khách (không token) POST /payments/<id>/confirm-cash/",
+  "expected": "401/403",
+  "actual": "HTTP 401",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "RATE-01",
+  "type": "Brute-force login (giả X-Forwarded-For)",
+  "payload": "25 lần đăng nhập sai, mỗi lần X-Forwarded-For khác nhau",
+  "expected": "429 sau 10 lần/phút (theo IP thật)",
+  "actual": "429 xuất hiện: True; mã: [429]",
+  "ok": true,
+  "severity": "-",
+  "rec": "Đặt REST_FRAMEWORK NUM_PROXIES đúng số proxy tin cậy (hiện None => DRF tin X-Forwarded-For do client gửi, bypass throttle); thêm khoá theo username (django-axes)."
+ },
+ {
+  "id": "RATE-02",
+  "type": "Giới hạn đăng nhập theo IP",
+  "payload": "16 lần đăng nhập sai liên tiếp (không giả IP)",
+  "expected": "429 sau 10 lần",
+  "actual": "429: True; mã: [429]",
+  "ok": true,
+  "severity": "-",
+  "rec": "-"
+ },
+ {
+  "id": "RATE-03",
+  "type": "Giới hạn API khách",
+  "payload": "bàn mới: 30 POST /orders/, 10 POST /staff-calls/, 140 GET current-order liên tiếp (throttle theo bàn: order_create 20/min, staff_call 6/min, customer 120/min)",
+  "expected": "429 khi vượt",
+  "actual": "429 — orders: True, staff-calls: True, customer: True",
+  "ok": true,
+  "severity": "-",
+  "rec": "Gắn throttle (AnonRateThrottle/ScopedRateThrottle) cho POST /orders/, /staff-calls/, /reviews/, /payments/create/ và đặt giới hạn ở reverse proxy."
+ }
+]

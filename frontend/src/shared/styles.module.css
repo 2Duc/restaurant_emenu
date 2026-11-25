@@ -1,0 +1,73 @@
+.materialIcon {
+  font-family: 'Material Symbols Outlined';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.materialIconFilled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Legacy toast (still used by Chef) — same look as global .toast */
+.toast {
+  position: fixed;
+  z-index: 120;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: var(--sp-6);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-md);
+  background-color: var(--ink-bar);
+  color: #fff;
+  font-size: var(--fs-14);
+  font-weight: 500;
+  box-shadow: var(--shadow-pop);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  transition: opacity var(--dur-2) var(--ease), transform var(--dur-2) var(--ease);
+  max-width: calc(100vw - 2rem);
+}
+
+.toastVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.toastHidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(8px);
+}
+
+.toastIcon {
+  color: #86EFAC;
+  flex-shrink: 0;
+}
+
+.liveDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background-color: var(--ok);
+  animation: pulse 2s var(--ease) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

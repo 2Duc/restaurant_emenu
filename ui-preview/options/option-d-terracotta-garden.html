@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Terracotta Garden — ABC Restaurant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..700,0..100,0..1&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap&subset=vietnamese" rel="stylesheet">
+<style>
+:root{--page:#EADFCE;--frame:#3A3226;--bg:#F6EFE6;--surface:#FFFBF5;--ink:#2E2A24;--ink2:#5D5549;--brand:#B5522A;--brand-ink:#fff;--line:#E5D8C6;--terra:#C8643B;--olive:#5B6E40;--sage:#DDE5CC;--price:#A64622;--r:24px;--r-sm:16px;--fd:'Fraunces',Georgia,serif;--fb:'Be Vietnam Pro',system-ui,sans-serif;--fdw:600;--sh:0 14px 30px -18px rgba(120,70,40,.4)}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--page);color:var(--ink);font-family:var(--fb);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.num{font-variant-numeric:tabular-nums}
+svg{flex:none}
+.spec{max-width:1560px;margin:0 auto;padding:44px 32px 30px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:28px 48px;align-items:end}
+.spec .eb{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);font-weight:600;display:flex;gap:10px;align-items:center}
+.spec .eb a{color:inherit}
+.spec h1{font-family:var(--fd);font-weight:var(--fdw,500);font-size:clamp(36px,4.4vw,60px);line-height:1.04;margin:10px 0 12px;letter-spacing:var(--fdls,0)}
+.spec .mood{color:var(--ink2);max-width:46ch;font-size:15px}
+.pal{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.sw{width:92px}.sw i{display:block;height:58px;border-radius:var(--r-sm);border:1px solid rgba(128,128,128,.28)}
+.sw b{font-size:12px;display:block;margin-top:7px;font-weight:600}.sw span{font-size:11px;color:var(--ink2);font-family:ui-monospace,Consolas,monospace}
+.type{grid-column:1/-1;display:flex;gap:44px;flex-wrap:wrap;align-items:flex-end;border-top:1px solid var(--line);padding-top:20px}
+.type .d{font-family:var(--fd);font-size:46px;line-height:1;font-weight:var(--fdw,500);letter-spacing:var(--fdls,0)}
+.type .b{font-family:var(--fb);font-size:15px;max-width:34ch}
+.type small{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin-bottom:8px;font-family:var(--fb);font-weight:600}
+.stage{max-width:1560px;margin:0 auto;padding:0 32px;display:flex;gap:44px;align-items:flex-start;justify-content:center;flex-wrap:wrap}
+.col-l{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);font-weight:600;margin-bottom:12px}
+.phone-col{flex:none}
+.desk-col{flex:1 1 640px;max-width:1100px;min-width:0}
+.phone-frame{width:390px;height:844px;border-radius:46px;border:9px solid var(--frame);overflow:hidden;position:relative;background:var(--bg);box-shadow:var(--frame-sh,0 30px 60px -30px rgba(0,0,0,.4))}
+.phone-scroll{height:100%;overflow-y:auto;scrollbar-width:none;padding-bottom:96px}
+.phone-scroll::-webkit-scrollbar{display:none}
+.desk-frame{container-type:inline-size;border-radius:16px;overflow:hidden;background:var(--bg);border:1px solid var(--line);box-shadow:var(--frame-sh,0 30px 60px -34px rgba(0,0,0,.35))}
+.app{background:var(--bg);color:var(--ink);font-family:var(--fb);position:relative}
+.top{display:flex;align-items:center;gap:10px;padding:14px 18px;position:relative;z-index:3}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+.mono{display:grid;place-items:center;font-weight:700;font-size:11px;letter-spacing:.08em;width:36px;height:36px;border-radius:50%}
+.bn{font-family:var(--fd);font-size:19px;font-weight:var(--fdw,600);line-height:1.1}
+.tbl{font-size:12px;font-weight:600;padding:6px 12px;border-radius:99px;display:flex;gap:6px;align-items:center}
+.cartbtn{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;position:relative}
+.cartbtn em{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;border-radius:9px;font-size:11px;font-style:normal;font-weight:700;display:grid;place-items:center;padding:0 4px}
+.links{display:none;gap:26px;font-size:14px;font-weight:500}
+.links a{color:inherit;text-decoration:none;opacity:.85}
+.hero{position:relative;overflow:hidden}
+.hero-img{position:absolute;inset:0}.hero-img img{width:100%;height:100%;object-fit:cover}
+.hero-in{position:relative;z-index:2}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:8px}
+.hero h2{font-family:var(--fd);font-weight:var(--fdw,500);line-height:1.08;letter-spacing:var(--fdls,0)}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:14px 18px}
+.chips::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;font-size:13.5px;font-weight:600;padding:8px 15px;border-radius:99px;transition:all .18s cubic-bezier(.2,.7,.2,1)}
+.sec-h{padding:8px 18px 4px;display:flex;flex-direction:column}
+.sec-h h3{font-family:var(--fd);font-weight:var(--fdw,500);line-height:1.15;letter-spacing:var(--fdls,0)}
+.sec-h p{color:var(--ink2);font-size:13.5px}
+.num{display:none}
+.wave{display:none}
+.grid{display:grid;gap:14px;padding:12px 18px 18px}
+.card{position:relative;background:var(--surface);overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover}
+.nm{font-family:var(--fd);font-weight:var(--fdw,500);line-height:1.2}
+.ds{color:var(--ink2);font-size:13px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rw{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto}
+.pr{font-weight:700;font-variant-numeric:tabular-nums;color:var(--price)}
+.add{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;transition:transform .18s cubic-bezier(.2,.7,.2,1)}
+.add:hover{transform:scale(1.08)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.cartbar{position:absolute;left:0;right:0;bottom:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cartbar .l{display:flex;align-items:center;gap:12px;font-weight:700;font-variant-numeric:tabular-nums}
+.cartbar .r{font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px}
+.phone .grid{grid-template-columns:1fr}
+@container (min-width:620px){.desk .grid{grid-template-columns:repeat(2,1fr)}}
+@container (min-width:900px){.desk .grid{grid-template-columns:repeat(3,1fr)}.desk .links{display:flex}}
+.foot{padding:22px 28px 28px;display:flex;justify-content:space-between;gap:20px;font-size:13px;color:var(--ink2);flex-wrap:wrap;border-top:1px solid var(--line)}
+.staff{max-width:1560px;margin:56px auto 90px;padding:0 32px}
+.staff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:start}
+.tk,.kpi,.tb{background:var(--surface);padding:20px;position:relative}
+.tk header,.tb header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.tk h4,.tb h4{font-family:var(--fd);font-size:26px;font-weight:var(--fdw,500);line-height:1.1}
+.tk .id,.tb .sub,.kpi .lab{font-size:12px;color:var(--ink2);font-weight:500}
+.kpi .lab{text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.st{font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px;white-space:nowrap}
+.tk ul{list-style:none;margin:14px 0;border-top:1px solid var(--line)}
+.tk li{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px;font-weight:500}
+.tk li b{font-variant-numeric:tabular-nums;min-width:26px}
+.tk .note{font-size:13px;color:var(--ink2);margin-bottom:14px}
+.tk footer{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.timer{display:flex;align-items:center;gap:6px;font-weight:700;font-variant-numeric:tabular-nums;font-size:15px}
+.btn{font-weight:600;font-size:14px;padding:10px 18px;border-radius:99px}
+.kpi .val{font-family:var(--fd);font-size:42px;line-height:1.1;margin:10px 0 4px;font-weight:var(--fdw,500);font-variant-numeric:tabular-nums}
+.kpi .dl{font-size:13px;font-weight:600;display:flex;gap:6px;align-items:center}
+.kpi svg.spark{width:100%;height:56px;margin-top:14px}
+.tb .meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+.tb .meta div span{display:block;font-size:12px;color:var(--ink2)}
+.tb .meta div b{font-size:18px;font-variant-numeric:tabular-nums}
+.tb footer{display:flex;gap:8px}
+@media (max-width:640px){.spec{grid-template-columns:1fr}.pal{justify-content:flex-start}.phone-frame{width:100%;max-width:390px}.stage,.staff,.spec{padding-left:16px;padding-right:16px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+
+.spec h1{font-variation-settings:"SOFT" 100,"WONK" 1}
+.sw i{border-radius:20px 20px 20px 6px}
+.top{background:var(--brand);color:#fff}
+.mono{background:#F6EFE6;color:var(--brand);font-family:var(--fd)}
+.bn{color:#fff;font-variation-settings:"SOFT" 100}
+.tbl{background:rgba(255,255,255,.18);color:#fff}
+.cartbtn{background:#F6EFE6;color:var(--brand)}
+.cartbtn em{background:var(--olive);color:#fff}
+.links a{color:#fff}
+.hero{background:var(--brand);color:#fff;min-height:250px}
+.hero-img{inset:auto;right:-14px;bottom:24px;width:172px;height:172px;border-radius:58% 42% 52% 48% / 48% 56% 44% 52%;overflow:hidden;box-shadow:0 0 0 6px rgba(255,255,255,.22)}
+.desk .hero-img{width:360px;height:360px;right:60px;bottom:40px;box-shadow:0 0 0 10px rgba(255,255,255,.2)}
+.desk .hero{min-height:440px}
+.hero-in{padding:14px 22px 56px;max-width:210px;position:relative;z-index:2}
+.desk .hero-in{max-width:560px;padding:50px 56px 100px}
+.phone .hero-in{max-width:230px}
+.eyebrow{color:#FBE3D3}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--sage);display:inline-block}
+.hero h2{font-size:28px;margin:12px 0 8px;font-variation-settings:"SOFT" 100}
+.desk .hero h2{font-size:60px}
+.hero p{font-size:14px;opacity:.95}
+.blob{position:absolute;z-index:1}
+.blob.b1{width:260px;height:260px;fill:var(--terra);right:-70px;top:-70px;opacity:.9}
+.blob.b2{width:170px;height:170px;fill:var(--olive);left:-50px;bottom:-30px;opacity:.55}
+.desk .blob.b1{width:480px;height:480px;right:-60px;top:-140px}
+.desk .blob.b2{width:300px;height:300px;left:30%;bottom:-120px}
+.wave{display:block;line-height:0;margin-top:-1px}
+.wave svg{width:100%;height:30px;fill:var(--bg);display:block}
+.hero + .wave{margin-top:-30px;position:relative;z-index:3}
+.hero + .wave svg{height:30px}
+.grid + .wave{background:var(--bg)}
+.grid + .wave svg{fill:var(--sage);height:34px;transform:scaleY(-1)}
+.chips{padding-top:2px}
+.chip{background:#fff;color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+.chip.on{background:var(--olive);color:#fff;box-shadow:none}
+.sec-h{padding-top:6px}
+.sec-h h3{font-size:28px;font-variation-settings:"SOFT" 100;color:var(--ink)}
+.desk .sec-h h3{font-size:40px}
+.desk .chips,.desk .sec-h,.desk .grid{padding-left:44px;padding-right:44px}
+.sec-h p{color:var(--ink2)}
+.grid + .wave + .sec-h{background:var(--sage);padding-top:12px}
+.grid + .wave + .sec-h + .grid{background:var(--sage)}
+.sec-h h3::after{content:"";display:inline-block;width:34px;height:8px;margin-left:12px;background:radial-gradient(circle at 4px 4px,var(--terra) 3px,transparent 3.5px) 0 0/12px 8px repeat-x}
+.card{border-radius:var(--r);box-shadow:var(--sh)}
+.phone .card{display:grid;grid-template-columns:104px 1fr;gap:6px;padding:12px;align-items:center}
+.phone .card .ph{width:104px;height:104px;border-radius:58% 42% 52% 48% / 48% 56% 44% 52%;overflow:hidden}
+.phone .bd{display:flex;flex-direction:column;gap:4px;padding:0 6px}
+.phone .nm{font-size:18px}
+.desk .card .ph{aspect-ratio:1/1.08;border-radius:999px 999px 20px 20px;margin:14px 14px 0;overflow:hidden}
+.desk .bd{padding:14px 20px 20px;display:flex;flex-direction:column;gap:6px}
+.nm{font-variation-settings:"SOFT" 100}
+.desk .nm{font-size:22px}
+.add{background:var(--brand);color:#fff}
+.cartbar{left:14px;right:14px;bottom:16px;background:var(--brand);color:#fff;border-radius:99px;padding:12px 16px 12px 12px;box-shadow:0 14px 28px -10px rgba(160,70,30,.65)}
+.cnt{width:30px;height:30px;border-radius:50%;background:var(--sage);color:#2A3318;display:grid;place-items:center;font-size:14px}
+.foot{background:var(--sage);color:#3F4A2C;border:0}
+.tk,.kpi,.tb{border-radius:28px;box-shadow:var(--sh)}
+.tk{border-radius:28px 28px 28px 8px}
+.tb{border-radius:28px 8px 28px 28px;background:var(--sage)}
+.tb .sub,.tb .meta span{color:#3F4A2C}
+.tk h4,.tb h4{font-variation-settings:"SOFT" 100}
+.st-warn{background:#FBE0CE;color:#8A3A14}.st-ok{background:#fff;color:#3F5226}
+.timer{color:#8A3A14}
+.btn-main{background:var(--brand);color:#fff}.btn-ghost{background:#fff;color:var(--ink)}
+.kpi{background:var(--brand);color:#fff}.kpi .lab{color:#FBE3D3}
+.kpi .val{color:#fff;font-variation-settings:"SOFT" 100}.kpi .dl{color:#fff}.kpi .ln{stroke:#fff}.kpi .area{fill:rgba(255,255,255,.18)}
+
+</style>
+</head>
+<body data-opt="d">
+<header class="spec">
+  <div>
+    <div class="eb"><a href="index.html">&larr; Tất cả phương án</a><span>·</span><span>Phương án D</span></div>
+    <h1>Terracotta Garden</h1>
+    <p class="mood">Cát ấm, đất nung và xanh ô liu như khu vườn buổi chiều. Hình khối hữu cơ, đường lượn sóng và bo góc lớn, chữ serif mềm. Gần gũi, tươi, có hơi thở gia đình.</p>
+  </div>
+  <div class="pal"><div class="sw"><i style="background:#B5522A"></i><b>Terracotta</b><span>#B5522A</span></div><div class="sw"><i style="background:#C8643B"></i><b>Terra tươi</b><span>#C8643B</span></div><div class="sw"><i style="background:#5B6E40"></i><b>Olive</b><span>#5B6E40</span></div><div class="sw"><i style="background:#DDE5CC"></i><b>Sage</b><span>#DDE5CC</span></div><div class="sw"><i style="background:#F6EFE6"></i><b>Sand</b><span>#F6EFE6</span></div></div>
+  <div class="type">
+    <div><small>Tiêu đề · Fraunces (Soft)</small><div class="d">Aa Phở bò tái chín</div></div>
+    <div><small>Nội dung · Be Vietnam Pro</small><div class="b">Chả giò hải sản chiên giòn, ăn kèm rau sống và nước chấm. 245.000 ₫</div></div>
+  </div>
+</header>
+
+<main class="stage">
+  <section class="phone-col">
+    <div class="col-l">Khách · điện thoại 390px</div>
+    <div class="phone-frame"><div class="phone-scroll app phone" id="phone"></div><div id="phone-cart"></div></div>
+  </section>
+  <section class="desk-col">
+    <div class="col-l">Khách · máy tính 1100px</div>
+    <div class="desk-frame"><div class="app desk" id="desk"></div></div>
+  </section>
+</main>
+
+<section class="staff">
+  <div class="col-l">Nhân viên · phiếu bếp · chỉ số quản lý · thẻ bàn</div>
+  <div class="staff-grid">
+    <article class="tk">
+      <header><div><h4>Bàn 07</h4><div class="id">Phiếu #0231 · 19:42</div></div><span class="st st-warn">Đang nấu</span></header>
+      <ul id="tk-lines"></ul>
+      <div class="note">Ghi chú: ít cay, mang ra cùng lúc</div>
+      <footer><span class="timer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2.5h6"/></svg>08:24</span><button class="btn btn-main">Báo xong món</button></footer>
+    </article>
+    <article class="kpi">
+      <div class="lab">Doanh thu hôm nay</div>
+      <div class="val">12.480.000 ₫</div>
+      <div class="dl"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l6-6 4 4 6-7M15 7h5v5"/></svg><span>+8,2% so với hôm qua</span></div>
+      <svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" fill="none"><path class="area" d="M0 44 C25 40 40 46 65 36 S110 30 135 34 S185 14 215 20 S265 8 300 6 L300 56 L0 56Z"/><path class="ln" d="M0 44 C25 40 40 46 65 36 S110 30 135 34 S185 14 215 20 S265 8 300 6" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </article>
+    <article class="tb">
+      <header><div><h4>Bàn 12</h4><div class="sub">4 chỗ · Tầng 1, gần cửa sổ</div></div><span class="st st-ok">Đang phục vụ</span></header>
+      <div class="meta"><div><span>Thời gian ngồi</span><b>1g 12p</b></div><div><span>Tạm tính</span><b>845.000 ₫</b></div><div><span>Số món</span><b>7 món</b></div><div><span>Khách</span><b>4 người</b></div></div>
+      <footer><button class="btn btn-main">Xem đơn</button><button class="btn btn-ghost">Thanh toán</button></footer>
+    </article>
+  </div>
+</section>
+
+<script src="data.js"></script>
+<script>
+(function(){
+var M=window.MENU,C=M.categories,I=M.items;
+var fmt=function(p){return String(p).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+' ₫'};
+var PLUS='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
+var BAG='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg>';
+var QR='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3M21 14v7h-4"/></svg>';
+var ARR='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+function byCat(id){return I.filter(function(i){return i.cat===id})}
+function card(i){return '<article class="card"><div class="ph"><img loading="lazy" src="'+i.img+'" alt="'+i.name+'"></div><div class="bd"><h4 class="nm">'+i.name+'</h4><p class="ds">'+i.desc+'</p><div class="rw"><span class="pr">'+fmt(i.price)+'</span><button class="add" aria-label="Thêm '+i.name+'">'+PLUS+'</button></div></div></article>'}
+var hero=byCat(4)[0]||I[0];
+var WAVE='<div class="wave"><svg viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C100 0 200 0 300 30 S500 60 600 30 S800 0 900 30 S1100 60 1200 30 V60 H0Z"/></svg></div>';
+function topbar(desk){return '<div class="top"><div class="brand"><span class="mono">ABC</span><span class="bn">ABC Restaurant</span></div>'+(desk?'<nav class="links"><a href="#">Thực đơn</a><a href="#">Đơn của bàn</a><a href="#">Gọi nhân viên</a></nav>':'')+'<span class="tbl">'+QR+' Bàn 07</span><button class="cartbtn" aria-label="Giỏ hàng">'+BAG+'<em>3</em></button></div>'}
+function heroH(desk){return '<section class="hero"><div class="hero-img"><img src="'+hero.img+'" alt=""></div><div class="hero-in"><div class="eyebrow"><i class="dot"></i>Bàn 07 · Thực đơn hôm nay</div><h2>Vị Việt, dọn lên<br>từng bàn nhỏ</h2><p>Quét mã, chọn món, bếp nhận đơn ngay.</p></div><svg class="blob b1" viewBox="0 0 200 200" aria-hidden="true"><path d="M47 -61C61 -50 72 -35 77 -18C82 0 80 20 70 35C60 50 43 60 24 67C5 74 -16 78 -35 71C-54 64 -71 47 -76 28C-81 8 -73 -14 -61 -32C-49 -50 -33 -64 -14 -70C5 -77 33 -72 47 -61Z" transform="translate(100 100)"/></svg><svg class="blob b2" viewBox="0 0 200 200" aria-hidden="true"><path d="M40 -52C52 -42 62 -28 65 -12C68 5 62 23 51 38C40 52 23 62 4 62C-15 62 -36 53 -48 38C-60 23 -62 1 -55 -18C-48 -37 -31 -53 -12 -58C7 -63 28 -62 40 -52Z" transform="translate(100 100)"/></svg></section>'+WAVE}
+function chips(){return '<div class="chips">'+C.map(function(c,k){return '<button class="chip'+(k===0?' on':'')+'" data-n="0'+(k+1)+'"><span class="num">0'+(k+1)+' </span>'+c.name+'</button>'}).join('')+'</div>'}
+function sec(c,k){return '<div class="sec-h"><h3><span class="num">0'+(k+1)+' —</span> '+c.name+'</h3><p>'+c.desc+'</p></div>'}
+var cA=C[0],cB=C[2];
+var ph=document.getElementById('phone');
+ph.innerHTML=topbar(false)+heroH(false)+chips()+sec(cA,0)+'<div class="grid">'+byCat(cA.id).slice(0,4).map(card).join('')+'</div>'+WAVE+sec(cB,2)+'<div class="grid">'+byCat(cB.id).slice(0,3).map(card).join('')+'</div>';
+document.getElementById('phone-cart').innerHTML='<div class="cartbar"><div class="l"><span class="cnt">3</span><span>3 món · 245.000 ₫</span></div><span class="r">Xem giỏ '+ARR+'</span></div>';
+var dk=document.getElementById('desk');
+dk.innerHTML=topbar(true)+heroH(true)+chips()+sec(cA,0)+'<div class="grid">'+byCat(cA.id).slice(0,3).map(card).join('')+'</div>'+WAVE+sec(cB,2)+'<div class="grid">'+byCat(cB.id).slice(0,3).map(card).join('')+'</div><footer class="foot"><span>ABC Restaurant · Giờ mở cửa 10:00 – 22:00</span><span>Giá đã gồm VAT</span></footer>';
+document.getElementById('tk-lines').innerHTML=[[2,I[2]],[1,byCat(3)[0]],[1,byCat(4)[1]||I[4]]].map(function(x){return '<li><b>'+x[0]+'×</b><span>'+x[1].name+'</span></li>'}).join('');
+})();
+</script>
+</body>
+</html>

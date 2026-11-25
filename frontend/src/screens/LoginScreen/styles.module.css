@@ -1,0 +1,27 @@
+.page { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; background: var(--bg); color: var(--ink); }
+.brandPanel { position: relative; overflow: hidden; background: var(--ink-bar); color: var(--on-hero); border-radius: 0 var(--r-xl) var(--r-xl) 0; padding: var(--sp-10) var(--sp-14); display: flex; flex-direction: column; justify-content: space-between; }
+.brandPanel::before { content: ""; position: absolute; width: 320px; height: 320px; right: -90px; top: -80px; border-radius: 58% 42% 55% 45% / 50% 55% 45% 50%; background: var(--brand); opacity: .35; pointer-events: none; }
+.brandPanel::after { content: ""; position: absolute; width: 260px; height: 260px; left: -70px; bottom: -60px; border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%; background: var(--accent); opacity: .18; pointer-events: none; }
+.brandPanel > * { position: relative; z-index: 1; }
+
+.brandPanel h1 { font: 500 var(--fs-36)/1.1 var(--font-display); color: #fff; margin-bottom: var(--sp-4); }
+.brandPanel p { max-width: 38ch; color: rgba(255, 255, 255, .92); font-size: var(--fs-16); }
+.brandPanel small { font-size: var(--fs-13); color: var(--eyebrow-hero); }
+.formPanel { display: grid; place-items: center; padding: var(--sp-8) var(--sp-4); }
+.formBox { width: min(360px, 100%); }
+.brandMobile { display: none; font: 600 var(--fs-22)/1 var(--font-display); color: var(--ink); margin-bottom: var(--sp-6); }
+.formBox h2 { font: 500 var(--fs-28)/1.15 var(--font-display); }
+.sub { color: var(--ink-2); font-size: var(--fs-14); margin-top: var(--sp-2); }
+.form { display: grid; gap: var(--sp-4); margin-top: var(--sp-8); }
+.form button { margin-top: var(--sp-2); }
+.back { display: inline-flex; align-items: center; gap: var(--sp-1); min-height: var(--tap); margin-top: var(--sp-6); color: var(--ink-2); font-size: var(--fs-14); text-decoration: none; border-radius: var(--r-sm); }
+.back:hover { color: var(--brand); }
+.back span { font-size: 18px; }
+@media (max-width: 800px) {
+  .page { grid-template-columns: 1fr; }
+  .brandPanel { display: none; }
+  .brandMobile { display: block; }
+  .formPanel { place-items: start center; padding-top: var(--sp-14); }
+}
+.brandName { display: flex; align-items: center; gap: var(--sp-3); font: 600 21px/1.1 var(--font-display); color: #fff; }
+.mono { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; background: var(--brand); color: #fff; box-shadow: 0 0 0 3px var(--ink-bar), 0 0 0 4px var(--gold); font: 700 10.5px/1 var(--font-ui); letter-spacing: .08em; }

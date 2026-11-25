@@ -1,0 +1,50 @@
+
+ RUN  v5.1.1 E:/do_an_tot_nghiep2/frontend
+
+ ✓ src/services/api.test.js > money() > formats integer VND with vi-VN grouping and currency sign 87ms
+ ✓ src/services/api.test.js > money() > treats null, undefined, empty and NaN-like input as zero 2ms
+ ✓ src/services/api.test.js > money() > accepts numeric strings 1ms
+ ✓ src/services/api.test.js > role / user helpers > getUser returns null when storage is empty or corrupt 3ms
+ ✓ src/services/api.test.js > role / user helpers > getRole treats superuser as AD 1ms
+ ✓ src/services/api.test.js > role / user helpers > getRole returns the role of a normal user 1ms
+ ✓ src/services/api.test.js > role / user helpers > clearTokens removes tokens and user 1ms
+ ✓ src/services/api.test.js > request error handling > returns parsed JSON on success 43ms
+ ✓ src/services/api.test.js > request error handling > throws the "detail" message from the server 11ms
+ ✓ src/services/api.test.js > request error handling > falls back to "message" then plain text then generic message 11ms
+ ✓ src/services/api.test.js > request error handling > returns null for an empty body 3ms
+ ✓ src/services/api.test.js > request error handling > sends X-Table-Id from /table/<id> and Bearer token 9ms
+ ✓ src/services/api.test.js > request error handling > reads legacy ?table= only on /menu and /payment-result 9ms
+ ✓ src/services/api.test.js > request error handling > sets JSON content type for body but not for FormData 4ms
+ ✓ src/services/api.test.js > request error handling > refreshes the token on 401 and retries once 3ms
+ ✓ src/services/api.test.js > request error handling > clears tokens when refresh fails 2ms
+ ✓ src/services/api.test.js > request error handling > login stores tokens and user 10ms
+ ✓ src/services/api.test.js > connectSocket reconnect > opens a socket for the group, including token when logged in 7ms
+ ✓ src/services/api.test.js > connectSocket reconnect > reconnects with backoff 1s, 2s, 5s, 10s, 10s 7ms
+ ✓ src/services/api.test.js > connectSocket reconnect > resets the backoff after a successful open 3ms
+ ✓ src/services/api.test.js > connectSocket reconnect > forwards messages and close events to handlers 2ms
+ ✓ src/services/api.test.js > connectSocket reconnect > stops reconnecting after the returned close function is called 2ms
+ ✓ src/services/api.test.js > connectSocket reconnect > cancels a pending reconnect timer on close 1ms
+ ✓ src/services/api.test.js > connectSocket reconnect > retries when the WebSocket constructor throws 2ms
+ ✓ src/screens/Menu/cartUtils.test.js > filterMenuItems > hides unavailable items 6ms
+ ✓ src/screens/Menu/cartUtils.test.js > filterMenuItems > filters by category id given as string 1ms
+ ✓ src/screens/Menu/cartUtils.test.js > filterMenuItems > searches name and description case-insensitively 1ms
+ ✓ src/screens/Menu/cartUtils.test.js > filterMenuItems > returns empty list when nothing matches 0ms
+ ✓ src/screens/Menu/cartUtils.test.js > cart helpers > addToCart adds a new line with quantity 1 1ms
+ ✓ src/screens/Menu/cartUtils.test.js > cart helpers > addToCart increments an existing line without mutating input 1ms
+ ✓ src/screens/Menu/cartUtils.test.js > cart helpers > changeCartQty removes a line when quantity reaches 0 1ms
+ ✓ src/screens/Menu/cartUtils.test.js > cart helpers > cartCount and cartTotal sum quantities and price*quantity 1ms
+ ✓ src/components/ConfirmDialog/ConfirmDialog.test.jsx > ConfirmDialog > renders message and default labels 650ms
+ ✓ src/components/ConfirmDialog/useConfirm.test.jsx > useConfirm > resolves true when confirmed and closes the dialog 774ms
+ ✓ src/components/ConfirmDialog/ConfirmDialog.test.jsx > ConfirmDialog > calls onConfirm when confirm button is clicked 107ms
+ ✓ src/components/ConfirmDialog/ConfirmDialog.test.jsx > ConfirmDialog > calls onCancel when cancel button is clicked 91ms
+ ✓ src/components/ConfirmDialog/useConfirm.test.jsx > useConfirm > resolves false when cancelled 106ms
+ ✓ src/components/ConfirmDialog/ConfirmDialog.test.jsx > ConfirmDialog > calls onCancel on Escape key 33ms
+ ✓ src/components/ConfirmDialog/ConfirmDialog.test.jsx > ConfirmDialog > focuses the confirm button so Enter confirms 76ms
+ ✓ src/components/ConfirmDialog/ConfirmDialog.test.jsx > ConfirmDialog > cancels when clicking the backdrop but not the dialog body 155ms
+ ✓ src/components/ConfirmDialog/ConfirmDialog.test.jsx > PromptDialog > submits entered values 296ms
+
+ Test Files  4 passed (4)
+      Tests  41 passed (41)
+   Start at  09:50:31
+   Duration  6.35s (environment 69%, setup 14%, tests 13%, import 2%, transform 1%, worker 1%)
+

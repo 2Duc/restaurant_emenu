@@ -1,0 +1,26 @@
+.page { min-height: 100vh; background: var(--bg); color: var(--ink); padding: var(--sp-6) var(--sp-4) var(--sp-10); }
+.toolbar { max-width: 1200px; margin: 0 auto var(--sp-6); display: flex; gap: var(--sp-6); justify-content: space-between; align-items: flex-end; flex-wrap: wrap; }
+.titleBlock { display: grid; gap: var(--sp-1); }
+.toolbar h1 { font-size: var(--fs-22); font-weight: 600; }
+.toolbar p { font-size: var(--fs-14); color: var(--ink-2); max-width: 52ch; }
+.back { justify-self: start; margin-left: calc(var(--sp-3) * -1); }
+.back span { font-size: 18px; }
+.baseForm { display: flex; gap: var(--sp-2); align-items: flex-end; flex-wrap: wrap; }
+.baseForm :global(.field) { width: min(320px, 100%); }
+.error { max-width: 1200px; margin: 0 auto var(--sp-4); }
+.grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: var(--sp-4); }
+.card { display: grid; justify-items: center; gap: var(--sp-2); text-align: center; padding: var(--sp-5) var(--sp-4); border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); break-inside: avoid; }
+.eyebrow { font-size: var(--fs-12); letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2); font-weight: 600; }
+.card h2 { font: 600 var(--fs-28)/1 var(--font-display); }
+.card img { width: 176px; height: 176px; image-rendering: pixelated; }
+.card small { font-size: var(--fs-12); color: var(--ink-2); }
+.url { font: 500 var(--fs-12)/1.4 ui-monospace, Menlo, monospace; color: var(--ink-2); word-break: break-all; text-decoration: none; background: var(--surface-2); border-radius: var(--r-sm); padding: var(--sp-1) var(--sp-2); }
+.url:hover { color: var(--brand); }
+.actions { display: flex; gap: var(--sp-2); margin-top: var(--sp-1); }
+.empty { grid-column: 1 / -1; }
+@media print {
+  .noPrint { display: none !important; }
+  .page { background: #fff; padding: 0; }
+  .card { border: 1px solid var(--line-strong); }
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}

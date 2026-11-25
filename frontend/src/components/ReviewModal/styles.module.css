@@ -1,0 +1,9 @@
+.hint{font-size:var(--fs-13);color:var(--ink-2);margin:0}
+.item{display:grid;gap:var(--sp-2);padding:var(--sp-4) 0;border-top:1px solid var(--line)}
+.stars{display:flex;gap:2px}
+.stars button{display:inline-grid;place-items:center;width:var(--tap);height:36px;color:var(--line-strong);transition:color var(--dur-1) var(--ease)}
+.stars button:hover:not(:disabled){color:var(--accent)}
+.stars button:disabled{cursor:default}
+.stars .on{color:var(--accent)}
+.send{justify-self:end}
+.thanks{margin:0;font-size:var(--fs-13);color:var(--ok)}

@@ -1,0 +1,47 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>Preview In QR</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&subset=vietnamese,latin&display=swap">
+<link rel="stylesheet" href="../frontend/src/styles/tokens.css"><link rel="stylesheet" href="../frontend/src/styles/base.css"><link rel="stylesheet" href="../frontend/src/styles/ui.css">
+<style>.wrap { display: grid; gap: var(--sp-4); color: var(--ink); }
+.baseForm { display: flex; gap: var(--sp-2); align-items: flex-end; flex-wrap: wrap; }
+.baseForm .field { flex: 1; min-width: 240px; }
+.note { font-size: var(--fs-13); color: var(--ink-2); max-width: 70ch; line-height: 1.5; }
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); padding: var(--sp-3) var(--sp-4); background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-md); }
+.count { font-weight: 600; font-size: var(--fs-14); color: var(--brand-deep); }
+.spacer { flex: 1; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--sp-4); }
+.card { position: relative; display: grid; justify-items: center; align-content: start; gap: var(--sp-2); text-align: center; padding: var(--sp-6) var(--sp-4) var(--sp-4); border: 2px solid var(--brand); border-radius: var(--r-xl); background: var(--surface); break-inside: avoid; }
+.card.picked { box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 25%, transparent); }
+.skelCard { min-height: 320px; align-content: center; border-color: var(--line); }
+.pick { position: absolute; top: var(--sp-3); left: var(--sp-3); display: grid; place-items: center; width: 28px; height: 28px; cursor: pointer; }
+.pick input { width: 18px; height: 18px; accent-color: var(--brand); cursor: pointer; }
+.eyebrow { font: 700 var(--fs-16)/1 var(--font-display); letter-spacing: .02em; color: var(--brand-deep); }
+.rule { width: 36px; height: 2px; background: var(--gold); border-radius: 2px; }
+.card h2 { font: 700 var(--fs-28)/1.1 var(--font-display); color: var(--brand); }
+.card img { width: 100%; max-width: 220px; aspect-ratio: 1; image-rendering: pixelated; }
+.guide { font-size: var(--fs-14); font-weight: 600; color: var(--brand-deep); }
+.card small { font-size: var(--fs-12); color: var(--ink-2); }
+.url { font: 500 var(--fs-12)/1.4 ui-monospace, Menlo, monospace; color: var(--ink-2); word-break: break-all; text-decoration: none; background: var(--surface-2); border-radius: var(--r-sm); padding: var(--sp-1) var(--sp-2); }
+.url:hover { color: var(--brand); }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-2); margin-top: var(--sp-1); }
+@media (max-width: 520px) { .toolbar { padding: var(--sp-3); } .spacer { display: none; } }
+
+/* In khổ A4: 2 cột x 2 hàng thẻ dán bàn mỗi trang, cắt theo viền */
+@media print {
+  @page { size: A4; margin: 10mm; }
+  .noPrint, .printHide { display: none !important; }
+  .wrap { display: block; }
+  .grid { display: grid; grid-template-columns: repeat(2, 90mm); gap: 8mm; justify-content: center; }
+  .card { height: 132mm; padding: 9mm 6mm; gap: 4mm; border: 1.2mm solid var(--brand); border-radius: 8mm; box-shadow: none; page-break-inside: avoid; break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .eyebrow { font-size: 6mm; }
+  .rule { width: 14mm; height: 0.8mm; }
+  .card h2 { font-size: 15mm; }
+  .card img { width: 66mm; max-width: none; }
+  .guide { font-size: 4.2mm; }
+}
+
+body{padding:24px} .page-wrap{max-width:1100px;margin:0 auto}</style></head><body><div class="page-wrap"><div class="wrap">
+<form class="baseForm noPrint"><div class="field"><label>Địa chỉ website của nhà hàng (dùng để tạo link trong mã QR)</label><input class="input" value="http://192.168.1.38:8088"></div><button type="button" class="btn btn-secondary">Cập nhật</button></form>
+<p class="note noPrint">Mã QR in ra dùng được lâu dài, chỉ cần in và dán một lần. QR phụ thuộc địa chỉ website ở trên: hãy dùng tên miền hoặc IP LAN cố định; nếu đổi địa chỉ hoặc bấm "Đổi mã QR" thì phải in lại.</p>
+<div class="alert alert-warn noPrint">Địa chỉ đang chọn (http://192.168.1.38:8088) khác địa chỉ cấu hình của máy chủ (https://abc.example.com). Chỉ in QR nếu đây đúng là địa chỉ khách sẽ truy cập.</div>
+<div class="toolbar noPrint"><span class="count">Đã chọn 2/4 bàn</span><button class="btn btn-ghost btn-sm">Chọn tất cả</button><button class="btn btn-ghost btn-sm">Bỏ chọn</button><span class="spacer"></span><button class="btn btn-primary">In bàn đã chọn</button><button class="btn btn-secondary">Tải PDF A4</button><button class="btn btn-secondary">Tải tất cả (zip)</button></div>
+<div class="grid"><article class="card"><label class="pick noPrint"><input type="checkbox"></label><span class="eyebrow">ABC Restaurant</span><span class="rule"></span><h2>Bàn 1</h2><img src="qr-assets/qr-1.png" alt=""><p class="guide">Quét để xem thực đơn và gọi món</p><small class="noPrint">Khu A</small><a class="url noPrint">http://192.168.1.38:8088/table/1?k=••••••••</a><div class="actions noPrint"><button class="btn btn-secondary btn-sm">Chép link</button><button class="btn btn-secondary btn-sm">Tải PNG</button></div></article><article class="card picked"><label class="pick noPrint"><input type="checkbox" checked></label><span class="eyebrow">ABC Restaurant</span><span class="rule"></span><h2>Bàn 2</h2><img src="qr-assets/qr-2.png" alt=""><p class="guide">Quét để xem thực đơn và gọi món</p><small class="noPrint">Khu A</small><a class="url noPrint">http://192.168.1.38:8088/table/2?k=••••••••</a><div class="actions noPrint"><button class="btn btn-secondary btn-sm">Chép link</button><button class="btn btn-secondary btn-sm">Tải PNG</button></div></article><article class="card picked"><label class="pick noPrint"><input type="checkbox" checked></label><span class="eyebrow">ABC Restaurant</span><span class="rule"></span><h2>Bàn 3</h2><img src="qr-assets/qr-3.png" alt=""><p class="guide">Quét để xem thực đơn và gọi món</p><small class="noPrint">Khu A</small><a class="url noPrint">http://192.168.1.38:8088/table/3?k=••••••••</a><div class="actions noPrint"><button class="btn btn-secondary btn-sm">Chép link</button><button class="btn btn-secondary btn-sm">Tải PNG</button></div></article><article class="card"><label class="pick noPrint"><input type="checkbox"></label><span class="eyebrow">ABC Restaurant</span><span class="rule"></span><h2>Bàn 4</h2><img src="qr-assets/qr-4.png" alt=""><p class="guide">Quét để xem thực đơn và gọi món</p><small class="noPrint">Khu A</small><a class="url noPrint">http://192.168.1.38:8088/table/4?k=••••••••</a><div class="actions noPrint"><button class="btn btn-secondary btn-sm">Chép link</button><button class="btn btn-secondary btn-sm">Tải PNG</button></div></article></div></div></div></body></html>

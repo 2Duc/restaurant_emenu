@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Noir &amp; Bronze — ABC Restaurant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,0..100;1,9..144,400..700,0..100&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap&subset=vietnamese" rel="stylesheet">
+<style>
+:root{--page:#0B0A09;--frame:#2A2620;--bg:#141210;--surface:#1C1916;--surface-2:#242019;--surface-3:#2C2720;--ink:#F3EBDD;--ink2:#C9BEAD;--ink3:#9A8F80;--brand:#C08A52;--brand-hover:#D49B60;--brand-deep:#9A6A38;--brand-soft:rgba(192,138,82,.14);--gold:#C9A46A;--bronze:#C08A52;--price:#E2B07A;--line:rgba(232,220,200,.10);--line-strong:rgba(232,220,200,.16);--r:22px;--r-sm:10px;--fd:'Fraunces',Georgia,serif;--fb:'Be Vietnam Pro',system-ui,sans-serif;--fdw:500;--frame-sh:0 30px 70px -30px rgba(192,138,82,.3)}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--page);color:var(--ink);font-family:var(--fb);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.num{font-variant-numeric:tabular-nums}
+svg{flex:none}
+.spec{max-width:1560px;margin:0 auto;padding:44px 32px 30px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:28px 48px;align-items:end}
+.spec .eb{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);font-weight:600;display:flex;gap:10px;align-items:center}
+.spec .eb a{color:inherit}
+.spec h1{font-family:var(--fd);font-weight:var(--fdw,500);font-size:clamp(36px,4.4vw,60px);line-height:1.04;margin:10px 0 12px;letter-spacing:var(--fdls,0)}
+.spec .mood{color:var(--ink2);max-width:46ch;font-size:15px}
+.pal{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.sw{width:92px}.sw i{display:block;height:58px;border-radius:var(--r-sm);border:1px solid rgba(128,128,128,.28)}
+.sw b{font-size:12px;display:block;margin-top:7px;font-weight:600}.sw span{font-size:11px;color:var(--ink2);font-family:ui-monospace,Consolas,monospace}
+.type{grid-column:1/-1;display:flex;gap:44px;flex-wrap:wrap;align-items:flex-end;border-top:1px solid var(--line);padding-top:20px}
+.type .d{font-family:var(--fd);font-size:46px;line-height:1;font-weight:var(--fdw,500);letter-spacing:var(--fdls,0)}
+.type .b{font-family:var(--fb);font-size:15px;max-width:34ch}
+.type small{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin-bottom:8px;font-family:var(--fb);font-weight:600}
+.stage{max-width:1560px;margin:0 auto;padding:0 32px;display:flex;gap:44px;align-items:flex-start;justify-content:center;flex-wrap:wrap}
+.col-l{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);font-weight:600;margin-bottom:12px}
+.phone-col{flex:none}
+.desk-col{flex:1 1 640px;max-width:1100px;min-width:0}
+.phone-frame{width:390px;height:844px;border-radius:46px;border:9px solid var(--frame);overflow:hidden;position:relative;background:var(--bg);box-shadow:var(--frame-sh,0 30px 60px -30px rgba(0,0,0,.4))}
+.phone-scroll{height:100%;overflow-y:auto;scrollbar-width:none;padding-bottom:96px}
+.phone-scroll::-webkit-scrollbar{display:none}
+.desk-frame{container-type:inline-size;border-radius:16px;overflow:hidden;background:var(--bg);border:1px solid var(--line);box-shadow:var(--frame-sh,0 30px 60px -34px rgba(0,0,0,.35))}
+.app{background:var(--bg);color:var(--ink);font-family:var(--fb);position:relative}
+.top{display:flex;align-items:center;gap:10px;padding:14px 18px;position:relative;z-index:3}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+.mono{display:grid;place-items:center;font-weight:700;font-size:11px;letter-spacing:.08em;width:36px;height:36px;border-radius:50%}
+.bn{font-family:var(--fd);font-size:19px;font-weight:var(--fdw,600);line-height:1.1}
+.tbl{font-size:12px;font-weight:600;padding:6px 12px;border-radius:99px;display:flex;gap:6px;align-items:center}
+.cartbtn{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;position:relative}
+.cartbtn em{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;border-radius:9px;font-size:11px;font-style:normal;font-weight:700;display:grid;place-items:center;padding:0 4px}
+.links{display:none;gap:26px;font-size:14px;font-weight:500}
+.links a{color:inherit;text-decoration:none;opacity:.85}
+.hero{position:relative;overflow:hidden}
+.hero-img{position:absolute;inset:0}.hero-img img{width:100%;height:100%;object-fit:cover}
+.hero-in{position:relative;z-index:2}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:8px}
+.hero h2{font-family:var(--fd);font-weight:var(--fdw,500);line-height:1.08;letter-spacing:var(--fdls,0)}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:14px 18px}
+.chips::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;font-size:13.5px;font-weight:600;padding:8px 15px;border-radius:99px;transition:all .18s cubic-bezier(.2,.7,.2,1)}
+.sec-h{padding:8px 18px 4px;display:flex;flex-direction:column}
+.sec-h h3{font-family:var(--fd);font-weight:var(--fdw,500);line-height:1.15;letter-spacing:var(--fdls,0)}
+.sec-h p{color:var(--ink2);font-size:13.5px}
+.num{display:none}
+.wave{display:none}
+.grid{display:grid;gap:14px;padding:12px 18px 18px}
+.card{position:relative;background:var(--surface);overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover}
+.nm{font-family:var(--fd);font-weight:var(--fdw,500);line-height:1.2}
+.ds{color:var(--ink2);font-size:13px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rw{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto}
+.pr{font-weight:700;font-variant-numeric:tabular-nums;color:var(--price)}
+.add{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;transition:transform .18s cubic-bezier(.2,.7,.2,1)}
+.add:hover{transform:scale(1.08)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.cartbar{position:absolute;left:0;right:0;bottom:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cartbar .l{display:flex;align-items:center;gap:12px;font-weight:700;font-variant-numeric:tabular-nums}
+.cartbar .r{font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px}
+.phone .grid{grid-template-columns:1fr}
+@container (min-width:620px){.desk .grid{grid-template-columns:repeat(2,1fr)}}
+@container (min-width:900px){.desk .grid{grid-template-columns:repeat(3,1fr)}.desk .links{display:flex}}
+.foot{padding:22px 28px 28px;display:flex;justify-content:space-between;gap:20px;font-size:13px;color:var(--ink2);flex-wrap:wrap;border-top:1px solid var(--line)}
+.staff{max-width:1560px;margin:56px auto 90px;padding:0 32px}
+.staff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:start}
+.tk,.kpi,.tb{background:var(--surface);padding:20px;position:relative}
+.tk header,.tb header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.tk h4,.tb h4{font-family:var(--fd);font-size:26px;font-weight:var(--fdw,500);line-height:1.1}
+.tk .id,.tb .sub,.kpi .lab{font-size:12px;color:var(--ink2);font-weight:500}
+.kpi .lab{text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.st{font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px;white-space:nowrap}
+.tk ul{list-style:none;margin:14px 0;border-top:1px solid var(--line)}
+.tk li{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px;font-weight:500}
+.tk li b{font-variant-numeric:tabular-nums;min-width:26px}
+.tk .note{font-size:13px;color:var(--ink2);margin-bottom:14px}
+.tk footer{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.timer{display:flex;align-items:center;gap:6px;font-weight:700;font-variant-numeric:tabular-nums;font-size:15px}
+.btn{font-weight:600;font-size:14px;padding:10px 18px;border-radius:99px}
+.kpi .val{font-family:var(--fd);font-size:42px;line-height:1.1;margin:10px 0 4px;font-weight:var(--fdw,500);font-variant-numeric:tabular-nums}
+.kpi .dl{font-size:13px;font-weight:600;display:flex;gap:6px;align-items:center}
+.kpi svg.spark{width:100%;height:56px;margin-top:14px}
+.tb .meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+.tb .meta div span{display:block;font-size:12px;color:var(--ink2)}
+.tb .meta div b{font-size:18px;font-variant-numeric:tabular-nums}
+.tb footer{display:flex;gap:8px}
+@media (max-width:640px){.spec{grid-template-columns:1fr}.pal{justify-content:flex-start}.phone-frame{width:100%;max-width:390px}.stage,.staff,.spec{padding-left:16px;padding-right:16px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+
+:root{color-scheme:dark}
+
+.spec h1{font-weight:500}
+.top{position:absolute;left:0;right:0;top:0;z-index:6;background:linear-gradient(180deg,rgba(10,8,6,.85),transparent);padding-bottom:30px}
+.phone .top{position:sticky;margin-bottom:-90px;top:0}
+.mono{background:rgba(20,18,16,.6);color:var(--bronze);box-shadow:inset 0 0 0 1px var(--bronze);font-family:var(--fd)}
+.bn{color:var(--ink);letter-spacing:.02em}
+.tbl{box-shadow:inset 0 0 0 1px var(--line);color:var(--ink);background:rgba(20,18,16,.5)}
+.cartbtn{background:rgba(20,18,16,.55);box-shadow:inset 0 0 0 1px var(--line);color:var(--ink)}
+.cartbtn em{background:var(--bronze);color:#141210}
+.links a{color:var(--ink)}
+.hero{min-height:480px;display:flex;align-items:flex-end}
+.desk .hero{min-height:620px}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,6,.2) 0%,rgba(20,18,16,.15) 35%,#141210 100%)}
+.hero-in{padding:0 24px 34px;width:100%}
+.desk .hero-in{padding:0 56px 64px;max-width:760px}
+.eyebrow{color:var(--bronze)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--bronze);display:inline-block;box-shadow:0 0 12px var(--bronze)}
+.hero h2{font-size:40px;margin:14px 0 10px;color:var(--ink)}
+.desk .hero h2{font-size:72px}
+.hero p{color:var(--ink2)}
+.chips{padding-top:6px}
+.chip{box-shadow:inset 0 0 0 1px var(--line);color:var(--ink);background:rgba(28,25,22,.7)}
+.chip:hover{box-shadow:inset 0 0 0 1px var(--bronze)}
+.chip.on{background:var(--bronze);color:#141210;box-shadow:0 8px 24px -8px rgba(192,138,82,.6)}
+.desk .chips,.desk .sec-h,.desk .grid{padding-left:48px;padding-right:48px}
+.sec-h{padding-top:26px}
+.sec-h h3{font-size:30px;color:var(--ink)}
+.desk .sec-h h3{font-size:44px}
+.sec-h::after{content:"";width:44px;height:1px;background:var(--bronze);margin-top:12px}
+.card{border-radius:var(--r);box-shadow:inset 0 0 0 1px var(--line),0 18px 40px -22px rgba(192,138,82,.4);background:var(--surface);aspect-ratio:16/11;display:flex}
+.desk .card{aspect-ratio:4/5}
+.card .ph{position:absolute;inset:0}
+.card .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(12,10,8,.94) 100%)}
+.bd{position:relative;z-index:2;margin-top:auto;padding:18px 20px;width:100%;display:flex;flex-direction:column;gap:5px}
+.nm{font-size:22px;color:var(--ink)}
+.desk .nm{font-size:26px}
+.ds{color:#D9CFBE}
+.phone .ds{-webkit-line-clamp:1}
+.pr{color:var(--price);font-size:17px}
+.add{background:var(--bronze);color:#141210;box-shadow:0 0 22px -2px rgba(192,138,82,.55)}
+.cartbar{left:14px;right:14px;bottom:16px;background:var(--bronze);color:#141210;border-radius:99px;padding:12px 16px 12px 12px;box-shadow:0 14px 40px -8px rgba(192,138,82,.6)}
+.cnt{width:30px;height:30px;border-radius:50%;background:#141210;color:var(--bronze);display:grid;place-items:center;font-size:14px}
+.foot{border-color:var(--line)}
+.tk,.kpi,.tb{border-radius:var(--r);box-shadow:inset 0 0 0 1px var(--line),0 18px 40px -26px rgba(192,138,82,.45)}
+.tk h4,.tb h4{color:var(--ink)}
+.st-warn{background:rgba(192,138,82,.18);color:#E8B77C}.st-ok{background:rgba(120,170,110,.16);color:#A9D39B}
+.timer{color:#E8B77C}
+.btn-main{background:var(--bronze);color:#141210}.btn-ghost{box-shadow:inset 0 0 0 1px var(--line);color:var(--ink)}
+.kpi .val{color:var(--ink)}.kpi .dl{color:#A9D39B}.kpi .ln{stroke:var(--bronze)}.kpi .area{fill:rgba(192,138,82,.14)}
+.kpi .lab{color:var(--bronze)}
+
+.spec h1,.bn,.hero h2,.sec-h h3,.nm,.tk h4,.tb h4,.kpi .val,.type .d{font-variation-settings:"SOFT" 60,"opsz" 72}
+.bn,.hero h2{font-style:italic;font-weight:400}
+.top{background:linear-gradient(180deg,rgba(20,18,16,.85),rgba(20,18,16,0))}
+.desk .top{background:rgba(20,18,16,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding-bottom:14px}
+.phone .top{background:rgba(20,18,16,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:-60px}
+.mono{box-shadow:inset 0 0 0 1px var(--gold);color:var(--gold)}
+.hero{border-radius:0 0 48px 48px / 0 0 32px 32px;margin-bottom:6px}
+.hero-img img{filter:saturate(1.05) contrast(1.04) brightness(.96)}
+.hero-img::after{background:linear-gradient(180deg,rgba(20,18,16,.15) 0%,rgba(20,18,16,.85) 100%)}
+.eyebrow,.sec-h .num{color:var(--gold)}
+.chip{background:var(--surface);box-shadow:inset 0 0 0 1px var(--line-strong);color:var(--ink2)}
+.chip:hover{background:var(--surface-3);color:var(--ink)}
+.chip.on{background:var(--brand-soft);color:var(--price);box-shadow:inset 0 0 0 1px rgba(192,138,82,.45)}
+.sec-h .num{display:inline;font-family:var(--fd);font-style:italic;font-size:.55em;margin-right:6px;vertical-align:middle;letter-spacing:.06em}
+.sec-h::after{background:var(--gold)}
+.card{border:0;box-shadow:inset 0 0 0 1px rgba(192,138,82,.14),0 1px 0 rgba(255,255,255,.03) inset,0 12px 32px rgba(0,0,0,.35);transition:box-shadow .2s cubic-bezier(.2,.7,.2,1)}
+.card:hover{box-shadow:inset 0 0 0 1px rgba(192,138,82,.32),0 0 0 1px rgba(192,138,82,.18),0 16px 40px rgba(0,0,0,.45)}
+.card .ph img{filter:saturate(1.05) contrast(1.04) brightness(.96)}
+.card .ph::after{background:linear-gradient(180deg,transparent 30%,rgba(20,18,16,.92) 100%)}
+.ds{color:var(--ink2)}
+.add,.btn-main{background:linear-gradient(135deg,#D9A46B,#B07A43);color:#1A140E;box-shadow:0 8px 20px -8px rgba(192,138,82,.55)}
+.cartbar{background:linear-gradient(135deg,#D9A46B,#B07A43);color:#1A140E}
+.cnt{background:#1A140E;color:var(--price)}
+.cartbtn em{background:var(--price);color:#1A140E}
+.chip.on{box-shadow:inset 0 0 0 1px rgba(192,138,82,.45)}
+.tk,.kpi,.tb{background:var(--surface);padding:22px}
+.tk h4{font-size:34px;font-style:italic;font-weight:400}
+.st-warn{background:rgba(224,168,79,.14);color:#E0A84F}.st-ok{background:rgba(111,191,138,.14);color:#6FBF8A}
+.timer{color:#E0A84F}
+.tk .note{background:rgba(224,168,79,.14);color:#F3D9A8;padding:8px 12px;border-radius:12px}
+.btn-ghost{box-shadow:inset 0 0 0 1px var(--line-strong)}
+.kpi .dl{color:#6FBF8A}.kpi .lab{color:var(--gold)}
+.tb .meta span{color:var(--ink2)}
+.foot{color:var(--ink2)}
+
+</style>
+</head>
+<body data-opt="c">
+<header class="spec">
+  <div>
+    <div class="eb"><a href="index.html">&larr; Tất cả phương án</a><span>·</span><span>Phương án C</span></div>
+    <h1>Noir &amp; Bronze</h1>
+    <p class="mood">Đêm ấm màu than gỗ, đồng đỏ và chữ kem. Ảnh món tràn khung như poster phim, viền đồng mảnh và ánh sáng mờ. Điện ảnh, kín đáo, hợp quán mở buổi tối.</p>
+  </div>
+  <div class="pal"><div class="sw"><i style="background:#141210"></i><b>Nền</b><span>#141210</span></div><div class="sw"><i style="background:#1C1916"></i><b>Surface</b><span>#1C1916</span></div><div class="sw"><i style="background:#C08A52"></i><b>Bronze</b><span>#C08A52</span></div><div class="sw"><i style="background:#F3EBDD"></i><b>Kem</b><span>#F3EBDD</span></div><div class="sw"><i style="background:#C9A46A"></i><b>Gold</b><span>#C9A46A</span></div></div>
+  <div class="type">
+    <div><small>Tiêu đề · Fraunces</small><div class="d">Aa Phở bò tái chín</div></div>
+    <div><small>Nội dung · Be Vietnam Pro</small><div class="b">Chả giò hải sản chiên giòn, ăn kèm rau sống và nước chấm. 245.000 ₫</div></div>
+  </div>
+</header>
+
+<main class="stage">
+  <section class="phone-col">
+    <div class="col-l">Khách · điện thoại 390px</div>
+    <div class="phone-frame"><div class="phone-scroll app phone" id="phone"></div><div id="phone-cart"></div></div>
+  </section>
+  <section class="desk-col">
+    <div class="col-l">Khách · máy tính 1100px</div>
+    <div class="desk-frame"><div class="app desk" id="desk"></div></div>
+  </section>
+</main>
+
+<section class="staff">
+  <div class="col-l">Nhân viên · phiếu bếp · chỉ số quản lý · thẻ bàn</div>
+  <div class="staff-grid">
+    <article class="tk">
+      <header><div><h4>Bàn 07</h4><div class="id">Phiếu #0231 · 19:42</div></div><span class="st st-warn">Đang nấu</span></header>
+      <ul id="tk-lines"></ul>
+      <div class="note">Ghi chú: ít cay, mang ra cùng lúc</div>
+      <footer><span class="timer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2.5h6"/></svg>08:24</span><button class="btn btn-main">Báo xong món</button></footer>
+    </article>
+    <article class="kpi">
+      <div class="lab">Doanh thu hôm nay</div>
+      <div class="val">12.480.000 ₫</div>
+      <div class="dl"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l6-6 4 4 6-7M15 7h5v5"/></svg><span>+8,2% so với hôm qua</span></div>
+      <svg class="spark" viewBox="0 0 300 56" preserveAspectRatio="none" fill="none"><path class="area" d="M0 44 C25 40 40 46 65 36 S110 30 135 34 S185 14 215 20 S265 8 300 6 L300 56 L0 56Z"/><path class="ln" d="M0 44 C25 40 40 46 65 36 S110 30 135 34 S185 14 215 20 S265 8 300 6" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </article>
+    <article class="tb">
+      <header><div><h4>Bàn 12</h4><div class="sub">4 chỗ · Tầng 1, gần cửa sổ</div></div><span class="st st-ok">Đang phục vụ</span></header>
+      <div class="meta"><div><span>Thời gian ngồi</span><b>1g 12p</b></div><div><span>Tạm tính</span><b>845.000 ₫</b></div><div><span>Số món</span><b>7 món</b></div><div><span>Khách</span><b>4 người</b></div></div>
+      <footer><button class="btn btn-main">Xem đơn</button><button class="btn btn-ghost">Thanh toán</button></footer>
+    </article>
+  </div>
+</section>
+
+<script src="data.js"></script>
+<script>
+(function(){
+var M=window.MENU,C=M.categories,I=M.items;
+var fmt=function(p){return String(p).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+' ₫'};
+var PLUS='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
+var BAG='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg>';
+var QR='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3M21 14v7h-4"/></svg>';
+var ARR='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+function byCat(id){return I.filter(function(i){return i.cat===id})}
+function card(i){return '<article class="card"><div class="ph"><img loading="lazy" src="'+i.img+'" alt="'+i.name+'"></div><div class="bd"><h4 class="nm">'+i.name+'</h4><p class="ds">'+i.desc+'</p><div class="rw"><span class="pr">'+fmt(i.price)+'</span><button class="add" aria-label="Thêm '+i.name+'">'+PLUS+'</button></div></div></article>'}
+var hero=byCat(4)[0]||I[0];
+var WAVE='';
+function topbar(desk){return '<div class="top"><div class="brand"><span class="mono">ABC</span><span class="bn">ABC Restaurant</span></div>'+(desk?'<nav class="links"><a href="#">Thực đơn</a><a href="#">Đơn của bàn</a><a href="#">Gọi nhân viên</a></nav>':'')+'<span class="tbl">'+QR+' Bàn 07</span><button class="cartbtn" aria-label="Giỏ hàng">'+BAG+'<em>3</em></button></div>'}
+function heroH(desk){return '<section class="hero"><div class="hero-img"><img src="'+hero.img+'" alt=""></div><div class="hero-in"><div class="eyebrow"><i class="dot"></i>Bàn 07 · Thực đơn hôm nay</div><h2>Vị Việt, dọn lên<br>từng bàn nhỏ</h2><p>Quét mã, chọn món, bếp nhận đơn ngay.</p></div></section>'+WAVE}
+function chips(){return '<div class="chips">'+C.map(function(c,k){return '<button class="chip'+(k===0?' on':'')+'" data-n="0'+(k+1)+'"><span class="num">0'+(k+1)+' </span>'+c.name+'</button>'}).join('')+'</div>'}
+function sec(c,k){return '<div class="sec-h"><h3><span class="num">0'+(k+1)+' —</span> '+c.name+'</h3><p>'+c.desc+'</p></div>'}
+var cA=C[0],cB=C[2];
+var ph=document.getElementById('phone');
+ph.innerHTML=topbar(false)+heroH(false)+chips()+sec(cA,0)+'<div class="grid">'+byCat(cA.id).slice(0,4).map(card).join('')+'</div>'+WAVE+sec(cB,2)+'<div class="grid">'+byCat(cB.id).slice(0,3).map(card).join('')+'</div>';
+document.getElementById('phone-cart').innerHTML='<div class="cartbar"><div class="l"><span class="cnt">3</span><span>3 món · 245.000 ₫</span></div><span class="r">Xem giỏ '+ARR+'</span></div>';
+var dk=document.getElementById('desk');
+dk.innerHTML=topbar(true)+heroH(true)+chips()+sec(cA,0)+'<div class="grid">'+byCat(cA.id).slice(0,3).map(card).join('')+'</div>'+WAVE+sec(cB,2)+'<div class="grid">'+byCat(cB.id).slice(0,3).map(card).join('')+'</div><footer class="foot"><span>ABC Restaurant · Giờ mở cửa 10:00 – 22:00</span><span>Giá đã gồm VAT</span></footer>';
+document.getElementById('tk-lines').innerHTML=[[2,I[2]],[1,byCat(3)[0]],[1,byCat(4)[1]||I[4]]].map(function(x){return '<li><b>'+x[0]+'×</b><span>'+x[1].name+'</span></li>'}).join('');
+})();
+</script>
+</body>
+</html>

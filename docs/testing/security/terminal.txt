@@ -1,0 +1,67 @@
+ABC Restaurant security scan  target=http://127.0.0.1:8030  2026-11-25 10:40:32
+====================================================================================================
+
+--- SQL Injection ---
+[PASS] SQLI-01   SQL Injection          Sạch
+[PASS] SQLI-02   SQL Injection (UNION)  HTTP 200, 0 bản ghi, lộ hash: False
+[PASS] SQLI-03   SQL Injection (login)  mã trả về: [401]
+[PASS] SQLI-04   SQL Injection (path id) mã: [404]
+[PASS] SQLI-05   SQL Injection (body JSON) [400, 400, 200, 400, 400, 400, 400]
+[PASS] SQLI-06   SQL Injection (DROP)   HTTP 200
+
+--- XSS ---
+[PASS] XSS-01    XSS lưu trữ (ghi chú món) POST [200, 200, 200]; lưu raw=True; Content-Type=application/json
+[PASS] XSS-02    XSS lưu trữ (tên/mô tả món, tên danh mục) tạo danh mục 400, món 201; Content-Type=application/json
+[PASS] XSS-03    XSS lưu trữ (nhận xét đánh giá) POST /reviews/ -> 201; body={"id":3,"order_item":44,"menu_item":2,"menu_item_name":"Chả 
+[PASS] XSS-04    XSS lưu trữ (gọi nhân viên) HTTP 201; CT=application/json
+[PASS] XSS-05    XSS phản chiếu (Browsable API) HTTP 406, CT=application/json, script thô trong HTML=False, browsable=False
+[PASS] XSS-07    XSS DOM (frontend)     Không thấy
+[INFO] XSS-08    Lưu JWT ở localStorage Token trong localStorage — nếu có XSS thì bị đánh cắp
+
+--- Phân quyền / IDOR / JWT ---
+[PASS] AUTH-01   Truy cập không token   sai: không
+[PASS] AUTH-02   Token role thấp (PV/BEP) sai: không
+[PASS] AUTH-03   Token Bếp ngoài vai trò {'BEP GET /staff-calls/': 403, 'BEP confirm-cash': 403, 'BEP PATCH order status': 403}
+[PASS] AUTH-04   IDOR khách bàn A -> bàn B sai: không; chi tiết {'order other table': 403, 'order no header': 403, 'add-items other': 403, 'create order 
+[PASS] AUTH-05   IDOR giả mạo header bàn mã trả về [403, 403, 403, 403, 403]
+[INFO] AUTH-06   ID tuần tự dễ đoán     đơn 0..2: [403, 200]
+[PASS] AUTH-07   Leo thang vai trò      PV->AD 403, PV superuser 403, QL tự->AD 400, QL tạo AD 400, QL tạo is_superuser 201
+[PASS] AUTH-08   Mật khẩu yếu           HTTP 400
+[PASS] AUTH-09   Lộ hash mật khẩu qua API có "password" trong JSON: False
+[PASS] AUTH-10   JWT giả/hết hạn/alg none {'sai khoá HS256': 401, 'alg none': 401, 'sửa payload giữ chữ ký': 401, 'rỗng chữ ký': 401, 'rác': 401, 'hết h
+[PASS] AUTH-11   Refresh token xoay vòng lần 1 có access=True, lần 2 -> 401
+[PASS] WS-01     WebSocket phân quyền   {'kitchen không token': 'từ chối (InvalidStatus)', 'staff không token': 'từ chối (InvalidStatus)', 'kitchen to
+[PASS] WS-02     WebSocket IDOR (kênh bàn) {'table_2 không token': 'từ chối (InvalidStatus)', 'table_2 token rác': 'từ chối (InvalidStatus)', 'table_2 to
+[PASS] BIZ-01    Thao túng giá/mass assignment tổng=150000.0 (kỳ vọng 150000.0); status=pending
+[PASS] BIZ-02    Số lượng không hợp lệ  [400, 400, 400]
+[PASS] BIZ-03    Đánh giá ngoài khoảng  HTTP 400
+
+--- Lộ bí mật / cấu hình ---
+[PASS] SEC-01    Lộ bí mật trong frontend Không thấy
+[PASS] SEC-02    backend/.env bị đóng gói/commit {'.gitignore': True, 'backend/.gitignore': None, 'backend/.dockerignore': True, 'frontend/.dockerignore': True
+[PASS] SEC-03    Path traversal lấy .env / mã nguồn Không lộ
+[PASS] SEC-04    SECRET_KEY mặc định/yếu fail-closed khi DEBUG=0: True; .env dùng khoá dev: False; độ dài khoá .env: 50
+[INFO] SEC-05    DEBUG bật trong .env   .env máy dev đặt DJANGO_DEBUG=1 (chấp nhận khi chạy local; server quét chạy DEBUG=0)
+[PASS] CFG-04    Lộ stacktrace (DEBUG)  mã [404, 400, 404, 400, 400]; lộ stacktrace=False
+[PASS] CFG-05    Xử lý tham số sai kiểu HTTP 400
+[PASS] CFG-06    Host header giả        HTTP 400
+[INFO] CFG-07    Trang /admin/          HTTP 200 — trang đăng nhập admin công khai, không giới hạn thử mật khẩu
+[PASS] CFG-08    Upload file độc (html/svg/php) {'shell.html': 400, 'x.svg': 400, 'shell.php': 400, 'shell.php.png': 400, 'real.php': 400, 'poly.png': 201}
+[PASS] CFG-09    Polyglot ảnh + mã      tải lên 201; phục vụ Content-Type=image/png; nosniff=nosniff
+[PASS] CFG-10    Upload quá dung lượng  HTTP 400
+[PASS] CFG-11    CORS origin lạ         {'http://evil.example.com': (None, None), 'null': (None, None), 'http://localhost:5173': ('http://localhost:51
+[PASS] CFG-12    Header bảo mật         X-Frame-Options=DENY, nosniff=nosniff, Referrer-Policy=same-origin; thiếu: không
+[PASS] CFG-13    HSTS / HTTPS           HSTS=max-age=31536000; CSP=None
+[PASS] PAY-01    mock-callback ở chế độ vnpay HTTP 404
+[INFO] PAY-02    mock-callback ở chế độ mock HTTP 200; đơn chuyển sang "completed" mà không trả tiền (hợp lệ ở mock, NGUY HIỂM nếu lọt lên production)
+[PASS] PAY-03    IPN chữ ký sai         {'RspCode': '97', 'Message': 'Invalid signature'}; thiếu chữ ký {'RspCode': '97', 'Message': 'Invalid signatur
+[PASS] PAY-04    IPN chữ ký đúng nhưng sai số tiền {'RspCode': '04', 'Message': 'Invalid amount'}; payment=pending
+[PASS] PAY-05    vnpay-return chữ ký sai HTTP 302; payment=pending
+[PASS] PAY-06    Khách tự xác nhận tiền mặt HTTP 401
+
+--- Giới hạn tần suất ---
+[PASS] RATE-01   Brute-force login (giả X-Forwarded-For) 429 xuất hiện: True; mã: [429]
+[PASS] RATE-02   Giới hạn đăng nhập theo IP 429: True; mã: [429]
+[PASS] RATE-03   Giới hạn API khách     429 — orders: True, staff-calls: True, customer: True
+====================================================================================================
+TỔNG: 53 kiểm tra | ĐẠT 48 | KHÔNG ĐẠT 0 | THÔNG TIN 5

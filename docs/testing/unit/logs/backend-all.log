@@ -1,0 +1,424 @@
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Found 212 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: channels, corsheaders, daphne, django_filters, messages, rest_framework, rest_framework_simplejwt, staticfiles
+  Apply all migrations: admin, api, auth, contenttypes, sessions, token_blacklist
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying api.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying api.0002_rename_image_menuitem_image_url... OK
+  Applying api.0003_staffcall... OK
+  Applying api.0004_order_discounts... OK
+  Applying api.0005_vnpay_fields_table_number... OK
+  Applying api.0006_alter_table_number... OK
+  Applying api.0007_brd_alignment... OK
+  Applying sessions.0001_initial... OK
+  Applying token_blacklist.0001_initial... OK
+  Applying token_blacklist.0002_outstandingtoken_jti_hex... OK
+  Applying token_blacklist.0003_auto_20171017_2007... OK
+  Applying token_blacklist.0004_auto_20171017_2013... OK
+  Applying token_blacklist.0005_remove_outstandingtoken_jti... OK
+  Applying token_blacklist.0006_auto_20171017_2113... OK
+  Applying token_blacklist.0007_auto_20171017_2214... OK
+  Applying token_blacklist.0008_migrate_to_bigautofield... OK
+  Applying token_blacklist.0010_fix_migrate_to_bigautofield... OK
+  Applying token_blacklist.0011_linearizes_history... OK
+  Applying token_blacklist.0012_alter_outstandingtoken_user... OK
+  Applying token_blacklist.0013_alter_blacklistedtoken_options_and_more...test_customer_cash_creates_single_staff_call_and_staff_roles_confirm (api.test_flows.CashFlowTests.test_customer_cash_creates_single_staff_call_and_staff_roles_confirm) ... E:\do_an_tot_nghiep2\backend\venv\Lib\site-packages\django\core\handlers\base.py:63: UserWarning: No directory at: E:\do_an_tot_nghiep2\backend\staticfiles\
+  mw_instance = middleware(adapted_handler)
+ok
+test_kitchen_and_anonymous_cannot_confirm (api.test_flows.CashFlowTests.test_kitchen_and_anonymous_cannot_confirm) ... ok
+test_table_not_released_when_other_open_order (api.test_flows.CashFlowTests.test_table_not_released_when_other_open_order) ... ok
+test_customer_cannot_order_on_cleaning_table (api.test_flows.CleaningTableOrderTests.test_customer_cannot_order_on_cleaning_table) ... ok
+test_sync_oserror_is_controlled (api.test_flows.MerchantApiErrorTests.test_sync_oserror_is_controlled) ... ok
+test_mock_cancel_marks_failed (api.test_flows.MockGatewayTests.test_mock_cancel_marks_failed) ... ok
+test_mock_endpoint_404_in_vnpay_mode (api.test_flows.MockGatewayTests.test_mock_endpoint_404_in_vnpay_mode) ... ok
+test_mock_success_cancel_idempotent (api.test_flows.MockGatewayTests.test_mock_success_cancel_idempotent) ... ok
+test_ipn_amount_mismatch_and_unknown_txn (api.test_flows.VNPayExtraTests.test_ipn_amount_mismatch_and_unknown_txn) ... ok
+test_ipn_bad_signature_rejected (api.test_flows.VNPayExtraTests.test_ipn_bad_signature_rejected) ... ok
+test_ipn_success_then_return_is_idempotent (api.test_flows.VNPayExtraTests.test_ipn_success_then_return_is_idempotent) ... ok
+test_url_params (api.test_flows.VNPayExtraTests.test_url_params) ... ok
+test_wrong_terminal_rejected (api.test_flows.VNPayExtraTests.test_wrong_terminal_rejected) ... ok
+test_manager_cannot_grant_admin (api.tests.BrdExtraTests.test_manager_cannot_grant_admin) ... ok
+test_second_order_merges_into_open_order (api.tests.BrdExtraTests.test_second_order_merges_into_open_order) ... ok
+test_table_with_orders_cannot_be_deleted_or_emptied (api.tests.BrdExtraTests.test_table_with_orders_cannot_be_deleted_or_emptied) ... ok
+test_cannot_cancel_item_once_cooking_and_last_item_cancels_order (api.tests.CustomerAndSecurityTests.test_cannot_cancel_item_once_cooking_and_last_item_cancels_order) ... ok
+test_customer_cancels_pending_item_and_totals_follow (api.tests.CustomerAndSecurityTests.test_customer_cancels_pending_item_and_totals_follow) ... ok
+test_customer_is_confined_to_own_table (api.tests.CustomerAndSecurityTests.test_customer_is_confined_to_own_table) ... ok
+test_item_level_promotion_only_discounts_that_dish (api.tests.CustomerAndSecurityTests.test_item_level_promotion_only_discounts_that_dish) ... ok
+test_login_is_rate_limited (api.tests.CustomerAndSecurityTests.test_login_is_rate_limited) ... ok
+test_manager_can_create_item_level_promotion (api.tests.CustomerAndSecurityTests.test_manager_can_create_item_level_promotion) ... ok
+test_menu_items_show_average_rating (api.tests.CustomerAndSecurityTests.test_menu_items_show_average_rating) ... ok
+test_percent_promotion_recomputed_when_items_added_and_pending_cash_follows (api.tests.CustomerAndSecurityTests.test_percent_promotion_recomputed_when_items_added_and_pending_cash_follows) ... ok
+test_reauth_and_change_password (api.tests.CustomerAndSecurityTests.test_reauth_and_change_password) ... ok
+test_kitchen_can_lock_dish_and_customers_stop_seeing_it (api.tests.KitchenApiTests.test_kitchen_can_lock_dish_and_customers_stop_seeing_it) ... ok
+test_login_returns_role_and_superuser_flag (api.tests.LoginPayloadTests.test_login_returns_role_and_superuser_flag) ... ok
+test_menu_item_edit_and_protected_delete (api.tests.ManagementApiTests.test_menu_item_edit_and_protected_delete) ... ok
+test_orders_filter_payments_list_and_audit (api.tests.ManagementApiTests.test_orders_filter_payments_list_and_audit) ... ok
+test_promotion_crud_validation_and_visibility (api.tests.ManagementApiTests.test_promotion_crud_validation_and_visibility) ... ok
+test_report_periods_best_sellers_and_peak_hours (api.tests.ManagementApiTests.test_report_periods_best_sellers_and_peak_hours) ... ok
+test_report_subtracts_refunds (api.tests.ManagementApiTests.test_report_subtracts_refunds) ... ok
+test_review_flow (api.tests.ManagementApiTests.test_review_flow) ... ok
+test_staff_accounts_manager_only_and_safe (api.tests.ManagementApiTests.test_staff_accounts_manager_only_and_safe) ... ok
+test_cash_requires_confirm_button (api.tests.PaymentFlowTests.test_cash_requires_confirm_button) ... ok
+test_confirm_cash_rejects_vnpay_payment (api.tests.PaymentFlowTests.test_confirm_cash_rejects_vnpay_payment) ... ok
+test_failed_payment_keeps_order_open (api.tests.PaymentFlowTests.test_failed_payment_keeps_order_open) ... ok
+test_ipn_confirms_and_is_idempotent (api.tests.PaymentFlowTests.test_ipn_confirms_and_is_idempotent) ... ok
+test_query_and_refund_are_manager_only_and_refund_works (api.tests.PaymentFlowTests.test_query_and_refund_are_manager_only_and_refund_works) ... ok
+test_result_page_can_verify_payment_from_backend (api.tests.PaymentFlowTests.test_result_page_can_verify_payment_from_backend) ... ok
+test_return_url_rejects_bad_signature_and_wrong_amount (api.tests.PaymentFlowTests.test_return_url_rejects_bad_signature_and_wrong_amount) ... ok
+test_return_url_success_completes_order (api.tests.PaymentFlowTests.test_return_url_success_completes_order) ... ok
+test_switching_from_cash_to_transfer_creates_new_link (api.tests.PaymentFlowTests.test_switching_from_cash_to_transfer_creates_new_link) ... ok
+test_sync_marks_paid_when_vnpay_says_success (api.tests.PaymentFlowTests.test_sync_marks_paid_when_vnpay_says_success) ... ok
+test_sync_survives_vnpay_outage (api.tests.PaymentFlowTests.test_sync_survives_vnpay_outage) ... ok
+test_table_number_is_id (api.tests.PaymentFlowTests.test_table_number_is_id) ... ok
+test_vnpay_create_returns_url_and_qr (api.tests.PaymentFlowTests.test_vnpay_create_returns_url_and_qr) ... ok
+test_customer_can_open_table_by_id (api.tests.TableQrTests.test_customer_can_open_table_by_id) ... ok
+test_qr_contains_link_with_table_id (api.tests.TableQrTests.test_qr_contains_link_with_table_id) ... ok
+test_build_url_contains_signed_amount (api.tests.VNPaySignatureTests.test_build_url_contains_signed_amount) ... ok
+test_invalid_signature_is_rejected (api.tests.VNPaySignatureTests.test_invalid_signature_is_rejected) ... ok
+test_missing_config_raises_clear_error (api.tests.VNPaySignatureTests.test_missing_config_raises_clear_error) ... ok
+test_create_logs_action (api.tests_unit.test_audit_service.AuditMixinTests.test_create_logs_action)
+perform_create ghi CATEGORY_CREATE. ... ok
+test_destroy_deletes_and_logs_with_old_label (api.tests_unit.test_audit_service.AuditMixinTests.test_destroy_deletes_and_logs_with_old_label)
+perform_destroy xoá đối tượng và ghi tên cũ + id cũ. ... ok
+test_update_logs_changed_fields_without_password (api.tests_unit.test_audit_service.AuditMixinTests.test_update_logs_changed_fields_without_password)
+perform_update liệt kê trường đã đổi, loại 'password'. ... ok
+test_anonymous_is_logged_as_anonymous (api.tests_unit.test_audit_service.LogActionTests.test_anonymous_is_logged_as_anonymous)
+Chưa đăng nhập -> actor None, tên 'anonymous'. ... ok
+test_custom_mode (api.tests_unit.test_audit_service.LogActionTests.test_custom_mode)
+Tham số mode được lưu vào acted_mode. ... ok
+test_logs_authenticated_actor (api.tests_unit.test_audit_service.LogActionTests.test_logs_authenticated_actor)
+User đăng nhập -> ghi actor và actor_name. ... ok
+test_request_without_user_attribute (api.tests_unit.test_audit_service.LogActionTests.test_request_without_user_attribute)
+Request không có thuộc tính user vẫn ghi được. ... ok
+test_title_truncated_to_255_and_payload_default (api.tests_unit.test_audit_service.LogActionTests.test_title_truncated_to_255_and_payload_default)
+Tiêu đề dài bị cắt 255; payload mặc định {}. ... ok
+test_category_ordering_by_sort_order_then_name (api.tests_unit.test_models.OtherModelTests.test_category_ordering_by_sort_order_then_name)
+Danh mục sắp theo sort_order rồi tên. ... ok
+test_invalid_status_rejected_by_full_clean (api.tests_unit.test_models.OtherModelTests.test_invalid_status_rejected_by_full_clean)
+Trạng thái ngoài choices bị full_clean từ chối. ... ok
+test_order_defaults_and_str (api.tests_unit.test_models.OtherModelTests.test_order_defaults_and_str)
+Đơn mới: pending, tổng 0; __str__ có id bàn. ... ok
+test_payment_status_is_success_helper (api.tests_unit.test_models.OtherModelTests.test_payment_status_is_success_helper)
+payment_status_is_success đúng với success/refunded, sai với failed/chưa có. ... ok
+test_status_choices_cover_expected_values (api.tests_unit.test_models.OtherModelTests.test_status_choices_cover_expected_values)
+Tập trạng thái hợp lệ của Order/OrderItem/StaffCall/Table. ... ok
+test_user_role_default_waiter_and_staffcall_str (api.tests_unit.test_models.OtherModelTests.test_user_role_default_waiter_and_staffcall_str)
+User mới mặc định role PV; StaffCall.__str__ có trạng thái. ... ok
+test_one_review_per_order_item (api.tests_unit.test_models.ReviewModelTests.test_one_review_per_order_item)
+Mỗi dòng món chỉ 1 đánh giá (OneToOne). ... ok
+test_rating_out_of_range_invalid (api.tests_unit.test_models.ReviewModelTests.test_rating_out_of_range_invalid)
+Rating 0, 6, 100 bị từ chối bởi validator. ... ok
+test_rating_range_1_to_5_valid (api.tests_unit.test_models.ReviewModelTests.test_rating_range_1_to_5_valid)
+Rating 1..5 hợp lệ. ... ok
+test_defaults_and_str (api.tests_unit.test_models.TableModelTests.test_defaults_and_str)
+Mặc định: capacity 4, status empty; __str__ = 'Bàn <id>'. ... ok
+test_numbers_unique_across_tables (api.tests_unit.test_models.TableModelTests.test_numbers_unique_across_tables)
+Nhiều bàn có number khác nhau. ... ok
+test_resave_keeps_number (api.tests_unit.test_models.TableModelTests.test_resave_keeps_number)
+Lưu lại bàn không đổi number. ... ok
+test_save_assigns_number_equal_to_pk (api.tests_unit.test_models.TableModelTests.test_save_assigns_number_equal_to_pk)
+Tạo bàn -> number = id (cả trong DB). ... ok
+test_save_overrides_manual_number (api.tests_unit.test_models.TableModelTests.test_save_overrides_manual_number)
+Gán number tuỳ ý vẫn bị ghi đè bằng id. ... ok
+test_compute_discount_does_not_check_validity_window (api.tests_unit.test_orders_service.ComputeDiscountTests.test_compute_discount_does_not_check_validity_window)
+compute_discount chỉ tính tiền; kiểm tra hạn/kích hoạt nằm ở tầng view (ghi nhận hành vi hiện tại). ... ok
+test_fixed_discount_is_returned_as_is (api.tests_unit.test_orders_service.ComputeDiscountTests.test_fixed_discount_is_returned_as_is)
+Mã cố định 50k trên đơn 300k -> giảm đúng 50k. ... ok
+test_fixed_discount_never_exceeds_order_total (api.tests_unit.test_orders_service.ComputeDiscountTests.test_fixed_discount_never_exceeds_order_total)
+Mã cố định 500k lớn hơn tổng 300k -> chỉ giảm 300k. ... ok
+test_hundred_percent_discount_equals_base (api.tests_unit.test_orders_service.ComputeDiscountTests.test_hundred_percent_discount_equals_base)
+Mã 100% -> giảm đúng bằng tổng. ... ok
+test_item_fixed_promotion_capped_by_item_base (api.tests_unit.test_orders_service.ComputeDiscountTests.test_item_fixed_promotion_capped_by_item_base)
+Mã cố định 150k gắn món Trà (100k) -> giảm tối đa 100k. ... ok
+test_item_promotion_only_counts_matching_lines (api.tests_unit.test_orders_service.ComputeDiscountTests.test_item_promotion_only_counts_matching_lines)
+Mã gắn món Phở 50% -> chỉ tính trên 200k của Phở, giảm 100k. ... ok
+test_item_promotion_without_matching_line_is_zero (api.tests_unit.test_orders_service.ComputeDiscountTests.test_item_promotion_without_matching_line_is_zero)
+Mã gắn món không có trong đơn -> giảm 0. ... ok
+test_no_promotion_gives_zero_discount (api.tests_unit.test_orders_service.ComputeDiscountTests.test_no_promotion_gives_zero_discount)
+Không có mã -> giảm 0. ... ok
+test_percent_discount_applies_to_whole_order (api.tests_unit.test_orders_service.ComputeDiscountTests.test_percent_discount_applies_to_whole_order)
+Mã 10% trên đơn 300k -> giảm 30k. ... ok
+test_percent_discount_is_rounded_to_whole_vnd (api.tests_unit.test_orders_service.ComputeDiscountTests.test_percent_discount_is_rounded_to_whole_vnd)
+Kết quả giảm làm tròn về đồng (không có phần thập phân). ... ok
+test_percent_over_100_is_capped_at_base (api.tests_unit.test_orders_service.ComputeDiscountTests.test_percent_over_100_is_capped_at_base)
+Dữ liệu sai 150% vẫn bị chặn ở mức tổng tiền. ... ok
+test_recalc_caps_fixed_discount_and_total_never_negative (api.tests_unit.test_orders_service.RecalcOrderTests.test_recalc_caps_fixed_discount_and_total_never_negative)
+Mã cố định lớn hơn tổng -> tổng = 0, không âm. ... ok
+test_recalc_empty_order_is_zero (api.tests_unit.test_orders_service.RecalcOrderTests.test_recalc_empty_order_is_zero)
+Đơn không còn món -> mọi số tiền bằng 0. ... ok
+test_recalc_ignores_non_pending_payment (api.tests_unit.test_orders_service.RecalcOrderTests.test_recalc_ignores_non_pending_payment)
+Thanh toán đã thành công không bị đổi số tiền. ... ok
+test_recalc_keeps_vnpay_link_when_amount_unchanged (api.tests_unit.test_orders_service.RecalcOrderTests.test_recalc_keeps_vnpay_link_when_amount_unchanged)
+Số tiền không đổi -> giữ nguyên link VNPay. ... ok
+test_recalc_recomputes_percent_after_item_removed (api.tests_unit.test_orders_service.RecalcOrderTests.test_recalc_recomputes_percent_after_item_removed)
+Xoá dòng Trà, mã 10% được tính lại trên 200k -> giảm 20k, tổng 180k. ... ok
+test_recalc_resets_vnpay_link_when_amount_changes (api.tests_unit.test_orders_service.RecalcOrderTests.test_recalc_resets_vnpay_link_when_amount_changes)
+Thanh toán VNPay chờ: đổi số tiền -> xoá link/ngày tạo cũ để buộc tạo link mới. ... ok
+test_recalc_sets_subtotal_and_total_without_promotion (api.tests_unit.test_orders_service.RecalcOrderTests.test_recalc_sets_subtotal_and_total_without_promotion)
+Không mã: tạm tính = tổng = 300k, giảm 0. ... ok
+test_recalc_updates_pending_cash_payment_amount (api.tests_unit.test_orders_service.RecalcOrderTests.test_recalc_updates_pending_cash_payment_amount)
+Thanh toán chờ (tiền mặt) được cập nhật số tiền mới. ... ok
+test_completed_and_cancelled_orders_do_not_hold_table (api.tests_unit.test_orders_service.ReleaseTableTests.test_completed_and_cancelled_orders_do_not_hold_table)
+Đơn completed/cancelled không giữ bàn. ... ok
+test_custom_status_cleaning_after_payment (api.tests_unit.test_orders_service.ReleaseTableTests.test_custom_status_cleaning_after_payment)
+Truyền status='cleaning' -> bàn chuyển sang đang dọn. ... ok
+test_other_tables_orders_are_ignored (api.tests_unit.test_orders_service.ReleaseTableTests.test_other_tables_orders_are_ignored)
+Đơn mở của bàn khác không ảnh hưởng. ... ok
+test_pending_and_confirmed_orders_keep_table_occupied (api.tests_unit.test_orders_service.ReleaseTableTests.test_pending_and_confirmed_orders_keep_table_occupied)
+Còn đơn pending/confirmed -> giữ nguyên trạng thái, trả False. ... ok
+test_table_without_open_orders_becomes_empty (api.tests_unit.test_orders_service.ReleaseTableTests.test_table_without_open_orders_becomes_empty)
+Không còn đơn mở -> bàn về 'empty', trả True. ... ok
+test_item_status_includes_table_group (api.tests_unit.test_realtime_service.BroadcastAfterCommitTests.test_item_status_includes_table_group)
+item_status_updated tới bàn + nhân viên. ... ok
+test_menu_updated_goes_to_staff_groups_only (api.tests_unit.test_realtime_service.BroadcastAfterCommitTests.test_menu_updated_goes_to_staff_groups_only)
+menu_updated chỉ tới nhóm nhân viên. ... ok
+test_new_order_sent_to_staff_and_table_groups_on_commit (api.tests_unit.test_realtime_service.BroadcastAfterCommitTests.test_new_order_sent_to_staff_and_table_groups_on_commit)
+Sau commit: gửi tới kitchen_orders, staff_orders và table_<id>. ... ok
+test_nothing_sent_before_commit (api.tests_unit.test_realtime_service.BroadcastAfterCommitTests.test_nothing_sent_before_commit)
+Chưa commit thì không gọi group_send. ... ok
+test_order_updated_reloads_fresh_data (api.tests_unit.test_realtime_service.BroadcastAfterCommitTests.test_order_updated_reloads_fresh_data)
+order_updated đọc lại đơn từ DB tại thời điểm commit. ... ok
+test_staff_call_groups (api.tests_unit.test_realtime_service.BroadcastAfterCommitTests.test_staff_call_groups)
+staff_call chỉ tới staff_orders và bàn đó. ... ok
+test_table_updated_groups (api.tests_unit.test_realtime_service.BroadcastAfterCommitTests.test_table_updated_groups)
+table_updated tới staff_orders và bàn đó. ... ok
+test_send_calls_group_send_for_each_group (api.tests_unit.test_realtime_service.SendTests.test_send_calls_group_send_for_each_group)
+_send gọi layer.group_send một lần cho mỗi nhóm. ... ok
+test_send_without_layer_is_noop (api.tests_unit.test_realtime_service.SendTests.test_send_without_layer_is_noop)
+Không có channel layer -> bỏ qua, không lỗi. ... ok
+test_weak_new_password_rejected (api.tests_unit.test_serializers_accounts.ChangePasswordSerializerTests.test_weak_new_password_rejected)
+Mật khẩu mới yếu bị chặn; mạnh thì qua. ... ok
+test_order_payment_fields_none_without_payment (api.tests_unit.test_serializers_accounts.OrderAndPaymentSerializerTests.test_order_payment_fields_none_without_payment)
+Đơn chưa có thanh toán -> payment_id/status/method None. ... ok
+test_order_payment_fields_with_payment (api.tests_unit.test_serializers_accounts.OrderAndPaymentSerializerTests.test_order_payment_fields_with_payment)
+Đơn có thanh toán -> hiển thị trạng thái/phương thức. ... ok
+test_qr_image_only_for_pending_vnpay_with_url (api.tests_unit.test_serializers_accounts.OrderAndPaymentSerializerTests.test_qr_image_only_for_pending_vnpay_with_url)
+qr_image chỉ có khi VNPay + pending + có pay_url. ... ok
+test_code_charset (api.tests_unit.test_serializers_accounts.PromotionSerializerTests.test_code_charset)
+Mã chứa khoảng trắng/ký tự lạ bị từ chối; '-' và '_' cho phép. ... ok
+test_end_must_be_after_start (api.tests_unit.test_serializers_accounts.PromotionSerializerTests.test_end_must_be_after_start)
+Ngày kết thúc <= bắt đầu -> lỗi. ... ok
+test_partial_update_uses_instance_values (api.tests_unit.test_serializers_accounts.PromotionSerializerTests.test_partial_update_uses_instance_values)
+PATCH chỉ đổi value=150 trên mã percent hiện có -> vẫn bị chặn (>100). ... ok
+test_valid_and_code_uppercased (api.tests_unit.test_serializers_accounts.PromotionSerializerTests.test_valid_and_code_uppercased)
+Mã hợp lệ và được viết hoa. ... ok
+test_value_must_be_positive_and_percent_max_100 (api.tests_unit.test_serializers_accounts.PromotionSerializerTests.test_value_must_be_positive_and_percent_max_100)
+Giá trị <= 0 sai; percent 101 sai, 100 đúng; fixed 101 đúng. ... ok
+test_not_served_or_not_completed_rejected (api.tests_unit.test_serializers_accounts.ReviewSerializerTests.test_not_served_or_not_completed_rejected)
+Món chưa phục vụ hoặc đơn chưa hoàn tất -> lỗi order_item. ... ok
+test_rating_bounds (api.tests_unit.test_serializers_accounts.ReviewSerializerTests.test_rating_bounds)
+Rating 0 và 6 sai; 1 và 5 đúng. ... ok
+test_valid_review (api.tests_unit.test_serializers_accounts.ReviewSerializerTests.test_valid_review)
+Món đã phục vụ trong đơn hoàn tất, 5 sao -> hợp lệ. ... ok
+test_admin_can_edit_admin_account (api.tests_unit.test_serializers_accounts.StaffSerializerTests.test_admin_can_edit_admin_account)
+AD sửa tài khoản AD -> hợp lệ. ... ok
+test_admin_can_grant_admin_role (api.tests_unit.test_serializers_accounts.StaffSerializerTests.test_admin_can_grant_admin_role)
+AD tạo được tài khoản AD. ... ok
+test_create_hashes_password_and_sets_is_staff (api.tests_unit.test_serializers_accounts.StaffSerializerTests.test_create_hashes_password_and_sets_is_staff)
+create: mật khẩu băm; is_staff True cho QL/AD, False cho PV/BEP. ... ok
+test_manager_cannot_edit_admin_account (api.tests_unit.test_serializers_accounts.StaffSerializerTests.test_manager_cannot_edit_admin_account)
+QL sửa tài khoản AD -> lỗi detail. ... ok
+test_manager_cannot_grant_admin_role (api.tests_unit.test_serializers_accounts.StaffSerializerTests.test_manager_cannot_grant_admin_role)
+QL tạo tài khoản role AD -> lỗi trường role. ... ok
+test_new_account_requires_password (api.tests_unit.test_serializers_accounts.StaffSerializerTests.test_new_account_requires_password)
+Tạo mới không có mật khẩu -> lỗi password. ... ok
+test_no_request_context_cannot_grant_admin (api.tests_unit.test_serializers_accounts.StaffSerializerTests.test_no_request_context_cannot_grant_admin)
+Không có request trong context -> không được cấp AD. ... ok
+test_password_not_in_output (api.tests_unit.test_serializers_accounts.StaffSerializerTests.test_password_not_in_output)
+password là write_only, không xuất ra. ... ok
+test_superuser_counts_as_admin (api.tests_unit.test_serializers_accounts.StaffSerializerTests.test_superuser_counts_as_admin)
+Superuser (role khác AD) cũng cấp được AD. ... ok
+test_update_changes_password_and_role_flag (api.tests_unit.test_serializers_accounts.StaffSerializerTests.test_update_changes_password_and_role_flag)
+update: đổi mật khẩu và is_staff theo role mới. ... ok
+test_weak_password_rejected (api.tests_unit.test_serializers_accounts.StaffSerializerTests.test_weak_password_rejected)
+Mật khẩu yếu (quá ngắn / toàn số) bị validator Django chặn. ... ok
+test_blank_name_rejected (api.tests_unit.test_serializers_catalog.CategorySerializerTests.test_blank_name_rejected)
+Tên toàn khoảng trắng -> lỗi. ... ok
+test_duplicate_name_case_insensitive (api.tests_unit.test_serializers_catalog.CategorySerializerTests.test_duplicate_name_case_insensitive)
+Trùng tên (không phân biệt hoa thường, ASCII; SQLite iexact không xử lý Unicode) -> lỗi. ... ok
+test_name_is_stripped (api.tests_unit.test_serializers_catalog.CategorySerializerTests.test_name_is_stripped)
+Tên được cắt khoảng trắng đầu cuối. ... ok
+test_update_same_name_allowed (api.tests_unit.test_serializers_catalog.CategorySerializerTests.test_update_same_name_allowed)
+Sửa chính danh mục đó giữ nguyên tên -> hợp lệ. ... ok
+test_empty_image_accepted (api.tests_unit.test_serializers_catalog.MenuItemSerializerTests.test_empty_image_accepted)
+Không gửi ảnh -> hợp lệ. ... ok
+test_image_exactly_5mb_accepted (api.tests_unit.test_serializers_catalog.MenuItemSerializerTests.test_image_exactly_5mb_accepted)
+Biên: đúng 5MB vẫn hợp lệ. ... ok
+test_invalid_image_format_rejected (api.tests_unit.test_serializers_catalog.MenuItemSerializerTests.test_invalid_image_format_rejected)
+File giả làm ảnh (nội dung không phải ảnh) -> lỗi image_url. ... ok
+test_negative_zero_and_non_numeric_price_rejected (api.tests_unit.test_serializers_catalog.MenuItemSerializerTests.test_negative_zero_and_non_numeric_price_rejected)
+Giá âm, 0, không phải số -> lỗi trường price. ... ok
+test_oversize_image_rejected (api.tests_unit.test_serializers_catalog.MenuItemSerializerTests.test_oversize_image_rejected)
+Ảnh > 5MB -> lỗi 'tối đa 5MB'. ... ok
+test_rating_annotations (api.tests_unit.test_serializers_catalog.MenuItemSerializerTests.test_rating_annotations)
+Không có annotation -> avg None, count 0; có thì làm tròn 1 chữ số. ... ok
+test_valid_png_accepted (api.tests_unit.test_serializers_catalog.MenuItemSerializerTests.test_valid_png_accepted)
+PNG thật nhỏ hợp lệ. ... ok
+test_valid_price_accepted (api.tests_unit.test_serializers_catalog.MenuItemSerializerTests.test_valid_price_accepted)
+Giá dương hợp lệ. ... ok
+test_capacity_bounds (api.tests_unit.test_serializers_catalog.TableSerializerTests.test_capacity_bounds)
+Sức chứa: 0, 51, -3 sai; 1 và 50 đúng. ... ok
+test_number_is_read_only (api.tests_unit.test_serializers_catalog.TableSerializerTests.test_number_is_read_only)
+Client không đặt được number; sau khi lưu number = id. ... ok
+test_broadcasts_reach_groups (api.test_flows.WsAuthTests.test_broadcasts_reach_groups) ... ok
+test_group_access_matrix (api.test_flows.WsAuthTests.test_group_access_matrix) ... ok
+test_order_flow_is_pushed_to_kitchen_staff_and_customer (api.tests.RealtimeTests.test_order_flow_is_pushed_to_kitchen_staff_and_customer) ... ok
+test_no_roles_given (api.tests_unit.test_permissions.HasRoleFunctionTests.test_no_roles_given)
+Không truyền role nào -> False với user thường. ... ok
+test_role_in_list (api.tests_unit.test_permissions.HasRoleFunctionTests.test_role_in_list)
+has_role đúng khi role nằm trong danh sách. ... ok
+test_superuser_and_anonymous (api.tests_unit.test_permissions.HasRoleFunctionTests.test_superuser_and_anonymous)
+Superuser luôn True; anonymous/None luôn False. ... ok
+test_anonymous_denied (api.tests_unit.test_permissions.PermissionMatrixTests.test_anonymous_denied)
+Chưa đăng nhập hoặc user None -> bị chặn. ... ok
+test_base_has_role_denies_by_default (api.tests_unit.test_permissions.PermissionMatrixTests.test_base_has_role_denies_by_default)
+HasRole không khai báo allowed_roles -> chặn mọi người (trừ superuser). ... ok
+test_each_role_against_each_permission (api.tests_unit.test_permissions.PermissionMatrixTests.test_each_role_against_each_permission)
+Ma trận vai trò x quyền: đúng vai trò mới được qua. ... ok
+test_superuser_passes_everything (api.tests_unit.test_permissions.PermissionMatrixTests.test_superuser_passes_everything)
+Superuser qua mọi quyền kể cả role lạ. ... ok
+test_unknown_role_denied (api.tests_unit.test_permissions.PermissionMatrixTests.test_unknown_role_denied)
+Role lạ không phải superuser -> bị chặn. ... ok
+test_box_size_and_border_change_image_size (api.tests_unit.test_qr_service.QrDataUriTests.test_box_size_and_border_change_image_size)
+box_size lớn hơn -> ảnh lớn hơn. ... ok
+test_different_text_gives_different_image (api.tests_unit.test_qr_service.QrDataUriTests.test_different_text_gives_different_image)
+Hai nội dung khác nhau -> ảnh khác nhau; cùng nội dung -> giống nhau. ... ok
+test_long_text_still_encodes (api.tests_unit.test_qr_service.QrDataUriTests.test_long_text_still_encodes)
+URL VNPay dài ~2000 ký tự với long_text=True vẫn sinh được ảnh. ... ok
+test_returns_png_data_uri (api.tests_unit.test_qr_service.QrDataUriTests.test_returns_png_data_uri)
+Kết quả là data URI PNG decode được thành ảnh. ... ok
+test_unicode_text (api.tests_unit.test_qr_service.QrDataUriTests.test_unicode_text)
+Chuỗi tiếng Việt không gây lỗi. ... ok
+test_nothing_sent_when_transaction_rolls_back (api.tests_unit.test_realtime_service.RollbackTests.test_nothing_sent_when_transaction_rolls_back)
+Giao dịch bị rollback -> sự kiện không bao giờ được gửi. ... ok
+test_sent_once_when_transaction_commits (api.tests_unit.test_realtime_service.RollbackTests.test_sent_once_when_transaction_commits)
+Commit thật -> gửi đúng 1 lần, và chỉ sau khi thoát atomic. ... ok
+test_missing_header_is_none (api.tests_unit.test_scope_service.CustomerTableIdTests.test_missing_header_is_none)
+Không có header -> None. ... ok
+test_non_numeric_values_are_none (api.tests_unit.test_scope_service.CustomerTableIdTests.test_non_numeric_values_are_none)
+Giá trị không phải số (abc, -1, 1.5, rỗng) -> None. ... ok
+test_returns_digit_string (api.tests_unit.test_scope_service.CustomerTableIdTests.test_returns_digit_string)
+Header '5' hợp lệ -> '5'. ... ok
+test_strips_whitespace (api.tests_unit.test_scope_service.CustomerTableIdTests.test_strips_whitespace)
+Header có khoảng trắng ' 7 ' -> '7'. ... ok
+test_customer_matching_table_passes (api.tests_unit.test_scope_service.EnsureTableScopeTests.test_customer_matching_table_passes)
+Khách đúng bàn (id int hoặc str) -> được phép. ... ok
+test_customer_other_table_denied (api.tests_unit.test_scope_service.EnsureTableScopeTests.test_customer_other_table_denied)
+Khách thao tác bàn khác -> PermissionDenied. ... ok
+test_customer_with_none_table_denied (api.tests_unit.test_scope_service.EnsureTableScopeTests.test_customer_with_none_table_denied)
+table_id None -> bị từ chối. ... ok
+test_customer_without_header_denied (api.tests_unit.test_scope_service.EnsureTableScopeTests.test_customer_without_header_denied)
+Khách không gửi X-Table-Id -> bị từ chối. ... ok
+test_staff_bypasses_scope (api.tests_unit.test_scope_service.EnsureTableScopeTests.test_staff_bypasses_scope)
+Nhân viên không bị giới hạn bàn, kể cả khi không có header. ... ok
+test_anonymous_or_unknown_role_is_not_staff (api.tests_unit.test_scope_service.IsStaffTests.test_anonymous_or_unknown_role_is_not_staff)
+Chưa đăng nhập, không có user hoặc role lạ -> không phải nhân viên. ... ok
+test_staff_roles_are_staff (api.tests_unit.test_scope_service.IsStaffTests.test_staff_roles_are_staff)
+PV, BEP, QL, AD đều là nhân viên. ... ok
+test_superuser_is_staff_regardless_of_role (api.tests_unit.test_scope_service.IsStaffTests.test_superuser_is_staff_regardless_of_role)
+Superuser luôn là nhân viên. ... ok
+test_empty_items_rejected (api.tests_unit.test_serializers_catalog.OrderCreateSerializerTests.test_empty_items_rejected)
+Danh sách món rỗng -> lỗi. ... ok
+test_invalid_ids_rejected (api.tests_unit.test_serializers_catalog.OrderCreateSerializerTests.test_invalid_ids_rejected)
+menu_item_id thiếu / không phải số / <= 0 -> lỗi. ... ok
+test_normalises_values_and_note (api.tests_unit.test_serializers_catalog.OrderCreateSerializerTests.test_normalises_values_and_note)
+Ép kiểu số, quantity mặc định 1, note cắt khoảng trắng và tối đa 255. ... ok
+test_quantity_bounds (api.tests_unit.test_serializers_catalog.OrderCreateSerializerTests.test_quantity_bounds)
+Số lượng 0, 100, -1 sai; 1 và 99 đúng. ... ok
+test_item_status_choices (api.tests_unit.test_serializers_catalog.SimpleSerializerTests.test_item_status_choices)
+Trạng thái món chỉ nhận 4 giá trị. ... ok
+test_payment_create_methods (api.tests_unit.test_serializers_catalog.SimpleSerializerTests.test_payment_create_methods)
+Chỉ nhận vnpay / cash (không MoMo, ZaloPay). ... ok
+test_payment_query_requires_one_id (api.tests_unit.test_serializers_catalog.SimpleSerializerTests.test_payment_query_requires_one_id)
+Truy vấn cần order_id hoặc payment_id. ... ok
+test_refund_amount_min_1 (api.tests_unit.test_serializers_catalog.SimpleSerializerTests.test_refund_amount_min_1)
+Hoàn tiền một phần phải >= 1; bỏ trống = hoàn toàn phần. ... ok
+test_staff_call_message_trimmed (api.tests_unit.test_serializers_catalog.SimpleSerializerTests.test_staff_call_message_trimmed)
+Lời nhắn cắt khoảng trắng và tối đa 255 ký tự. ... ok
+test_bank_code_included_only_when_given (api.tests_unit.test_vnpay_service.BuildUrlTests.test_bank_code_included_only_when_given)
+Có bank_code -> thêm vnp_BankCode, không có thì bỏ. ... ok
+test_expire_is_after_create_by_given_minutes (api.tests_unit.test_vnpay_service.BuildUrlTests.test_expire_is_after_create_by_given_minutes)
+vnp_ExpireDate = CreateDate + expire_minutes. ... ok
+test_ip_truncated_to_45 (api.tests_unit.test_vnpay_service.BuildUrlTests.test_ip_truncated_to_45)
+IP quá dài bị cắt còn 45 ký tự. ... ok
+test_large_amount (api.tests_unit.test_vnpay_service.BuildUrlTests.test_large_amount)
+Biên: số tiền lớn 2 tỷ -> nhân 100 không tràn. ... ok
+test_missing_config_raises (api.tests_unit.test_vnpay_service.BuildUrlTests.test_missing_config_raises)
+Thiếu TMN code hoặc secret -> VNPayError. ... ok
+test_order_info_truncated_to_255 (api.tests_unit.test_vnpay_service.BuildUrlTests.test_order_info_truncated_to_255)
+order_info dài 300 ký tự bị cắt còn 255. ... ok
+test_unicode_and_special_chars_in_order_info_roundtrip (api.tests_unit.test_vnpay_service.BuildUrlTests.test_unicode_and_special_chars_in_order_info_roundtrip)
+Tiếng Việt, & và = trong order_info được mã hoá đúng và chữ ký vẫn hợp lệ. ... ok
+test_url_contains_amount_x100_and_valid_hash (api.tests_unit.test_vnpay_service.BuildUrlTests.test_url_contains_amount_x100_and_valid_hash)
+Số tiền nhân 100; chữ ký trong URL verify được. ... ok
+test_zero_amount_is_still_built (api.tests_unit.test_vnpay_service.BuildUrlTests.test_zero_amount_is_still_built)
+Biên: amount=0 vẫn dựng URL (nghiệp vụ chặn ở tầng view). ... ok
+test_defaults_to_loopback (api.tests_unit.test_vnpay_service.ClientIpTests.test_defaults_to_loopback)
+Không có gì -> 127.0.0.1 (cả khi REMOTE_ADDR rỗng). ... ok
+test_falls_back_to_remote_addr (api.tests_unit.test_vnpay_service.ClientIpTests.test_falls_back_to_remote_addr)
+Không có forwarded -> REMOTE_ADDR. ... ok
+test_uses_first_forwarded_ip (api.tests_unit.test_vnpay_service.ClientIpTests.test_uses_first_forwarded_ip)
+X-Forwarded-For nhiều IP -> lấy IP đầu tiên. ... ok
+test_encoded_pairs_sorts_drops_empty_and_quotes (api.tests_unit.test_vnpay_service.HashTests.test_encoded_pairs_sorts_drops_empty_and_quotes)
+Sắp theo key, bỏ rỗng/None, quote_plus (space -> +, & -> %26). ... ok
+test_hmacsha512_handles_unicode (api.tests_unit.test_vnpay_service.HashTests.test_hmacsha512_handles_unicode)
+Dữ liệu tiếng Việt được encode UTF-8 không lỗi. ... ok
+test_hmacsha512_matches_reference_implementation (api.tests_unit.test_vnpay_service.HashTests.test_hmacsha512_matches_reference_implementation)
+HMAC-SHA512 trùng kết quả thư viện chuẩn, độ dài 128 hex. ... ok
+test_http_error_becomes_vnpay_error (api.tests_unit.test_vnpay_service.MerchantApiTests.test_http_error_becomes_vnpay_error)
+HTTP 500 -> VNPayError. ... ok
+test_network_error_becomes_vnpay_error (api.tests_unit.test_vnpay_service.MerchantApiTests.test_network_error_becomes_vnpay_error)
+Lỗi mạng (RequestException/OSError/ValueError) -> VNPayError, không rò lỗi gốc. ... ok
+test_query_transaction_posts_signed_payload (api.tests_unit.test_vnpay_service.MerchantApiTests.test_query_transaction_posts_signed_payload)
+querydr gửi payload có chữ ký HMAC theo thứ tự trường quy định. ... ok
+test_refund_full_vs_partial_transaction_type (api.tests_unit.test_vnpay_service.MerchantApiTests.test_refund_full_vs_partial_transaction_type)
+Hoàn toàn phần = 02, một phần = 03; amount nhân 100; transaction_no rỗng -> '0'. ... ok
+test_format_and_prefix (api.tests_unit.test_vnpay_service.TxnRefTests.test_format_and_prefix)
+Mã bắt đầu ORD<id>T, chỉ gồm chữ/số, dưới 100 ký tự. ... ok
+test_unique_per_call (api.tests_unit.test_vnpay_service.TxnRefTests.test_unique_per_call)
+Gọi liên tiếp 200 lần không trùng. ... ok
+test_accepts_querydict_like_input (api.tests_unit.test_vnpay_service.VerifyResponseTests.test_accepts_querydict_like_input)
+Nhận được cả QueryDict (dict(...) trả list) mà không ném lỗi. ... ok
+test_empty_secret_fails (api.tests_unit.test_vnpay_service.VerifyResponseTests.test_empty_secret_fails)
+Chưa cấu hình khoá -> luôn False. ... ok
+test_missing_hash_fails (api.tests_unit.test_vnpay_service.VerifyResponseTests.test_missing_hash_fails)
+Thiếu vnp_SecureHash -> False. ... ok
+test_secure_hash_type_and_non_vnp_params_ignored (api.tests_unit.test_vnpay_service.VerifyResponseTests.test_secure_hash_type_and_non_vnp_params_ignored)
+vnp_SecureHashType và tham số không bắt đầu bằng vnp_ không ảnh hưởng chữ ký. ... ok
+test_tampered_amount_fails (api.tests_unit.test_vnpay_service.VerifyResponseTests.test_tampered_amount_fails)
+Sửa số tiền sau khi ký -> False. ... ok
+test_uppercase_hash_passes (api.tests_unit.test_vnpay_service.VerifyResponseTests.test_uppercase_hash_passes)
+Hash viết hoa vẫn hợp lệ (so sánh không phân biệt hoa thường). ... ok
+test_valid_signature_passes (api.tests_unit.test_vnpay_service.VerifyResponseTests.test_valid_signature_passes)
+Chữ ký đúng -> True. ... ok
+test_wrong_secret_fails (api.tests_unit.test_vnpay_service.VerifyResponseTests.test_wrong_secret_fails)
+Khoá bí mật khác -> False. ... ok
+
+----------------------------------------------------------------------
+Ran 212 tests in 216.598s
+
+OK
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+ OK
+System check identified no issues (0 silenced).

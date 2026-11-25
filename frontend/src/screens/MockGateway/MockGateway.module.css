@@ -1,0 +1,13 @@
+.page { min-height: 100vh; display: grid; place-items: center; padding: var(--sp-6) var(--sp-4); background: var(--bg); color: var(--ink); }
+.card { width: min(420px, 100%); display: grid; gap: var(--sp-3); padding: var(--sp-6); background: var(--surface); border: 1px solid var(--line, #dfe9e3); border-radius: 24px; box-shadow: 0 12px 40px rgba(22, 48, 42, .08); text-align: center; }
+.card h1 { font-family: 'Newsreader', serif; font-size: var(--fs-22); font-weight: 600; color: var(--brand-deep); }
+.badge { justify-self: center; font-size: var(--fs-12); letter-spacing: .08em; font-weight: 600; color: var(--warn); background: var(--warn-soft); padding: 4px 12px; border-radius: 999px; }
+.amount { display: grid; gap: 2px; padding: var(--sp-3); background: var(--bg); border-radius: 16px; }
+.amount span { font-size: var(--fs-12); color: var(--ink-2); }
+.amount b { font-size: 28px; color: var(--price); }
+.meta { display: grid; gap: 6px; text-align: left; font-size: var(--fs-12); }
+.meta div { display: flex; justify-content: space-between; gap: var(--sp-3); }
+.meta dt { color: var(--ink-2); }
+.meta dd { margin: 0; font-weight: 600; word-break: break-all; text-align: right; }
+.card small { font-size: var(--fs-12); color: var(--ink-2); }
+.card button svg, .card button span { vertical-align: middle; }

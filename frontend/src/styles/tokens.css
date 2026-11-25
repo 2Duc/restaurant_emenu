@@ -1,0 +1,101 @@
+:root {
+  /* color — Option A "Basil Soft" */
+  --bg: #F4FBF7;
+  --page: #E3EFE8;
+  --bg-staff: #EEF7F1;
+  --surface: #FFFFFF;
+  --surface-2: #EAF5EE;
+  --line: #DCE9E1;
+  --line-strong: #C3D6CA;
+  --ink: #16302A;
+  --ink-2: #46605A;
+  --ink-3: #6F8780;
+  --ink-bar: #16302A;
+  --on-bar: #F2F7F1;
+  --on-bar-2: rgba(242, 247, 241, .72);
+  --bar-line: rgba(255, 255, 255, .10);
+  --bar-active: rgba(255, 255, 255, .08);
+  --brand: #12805A;
+  --brand-hover: #0D6A49;
+  --brand-soft: #E3F3EA;
+  --accent: #F29B38;
+  --accent-soft: #FFEBD0;
+  --accent-ink: #7A4300;
+  --on-accent: #2A1700;
+  --price: #0C6648;
+  --ok: #0C5A40;
+  --ok-soft: #DDF1E6;
+  --warn: #7A4300;
+  --warn-soft: #FFEBD0;
+  --danger: #DC2626;
+  --danger-soft: #FEE2E2;
+  --info: #0369A1;
+  --info-soft: #E0F2FE;
+  --overlay: rgba(22, 48, 42, .45);
+  --gold: #CDB57A;
+  --brand-deep: #0C5A40;
+  --grad-cta: #12805A;
+  --grad-cta-hover: #0D6A49;
+  --grad-page: none;
+  --grad-side: linear-gradient(180deg, #FFFFFF 0%, #EAF5EE 100%);
+  --head-bg: #F4FBF7;
+  --head-ink: #16302A;
+  --head-ink-2: #46605A;
+  --head-line: transparent;
+  --head-hover: rgba(15, 61, 46, .06);
+  --head-shadow: none;
+  --hero-tint: rgba(9, 52, 38, .7);
+  --on-hero: #FFFFFF;
+  --eyebrow-hero: #F6E6BE;
+  --gold-line: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+
+  /* fonts */
+  --font-ui: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-body: var(--font-ui);
+
+  /* type scale */
+  --fs-12: 12px;
+  --fs-13: 13px;
+  --fs-14: 14px;
+  --fs-16: 16px;
+  --fs-18: 18px;
+  --fs-22: 22px;
+  --fs-28: 28px;
+  --fs-36: 36px;
+  --lh-body: 1.5;
+  --lh-heading: 1.2;
+
+  /* spacing (4px grid) */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-14: 56px;
+
+  /* radii */
+  --r-sm: 10px;
+  --r-md: 12px;
+  --r-lg: 18px;
+  --r-xl: 22px;
+  --r-pill: 999px;
+
+  /* shadows */
+  --shadow-1: 0 12px 28px -14px rgba(18, 128, 90, .35);
+  --shadow-btn: 0 6px 14px -6px rgba(18, 128, 90, .7);
+  --shadow-bar: 0 16px 30px -10px rgba(10, 80, 56, .6);
+  --shadow-pop: 0 18px 40px -12px rgba(22, 48, 42, .28);
+
+  /* motion */
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --dur-1: 150ms;
+  --dur-2: 200ms;
+
+  /* misc */
+  --tap: 44px;
+  --ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--brand);
+}

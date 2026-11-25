@@ -1,0 +1,12 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+GET,GET /api/tables/[id]/,HTTPError('500 Server Error: Internal Server Error for url: GET /api/tables/[id]/'),189,2026-11-25T02:45:37Z,2026-11-25T02:47:09Z
+GET,GET /api/orders/ (staff),HTTPError('500 Server Error: Internal Server Error for url: GET /api/orders/ (staff)'),216,2026-11-25T02:45:37Z,2026-11-25T02:47:09Z
+GET,GET /api/orders/[id]/,HTTPError('500 Server Error: Internal Server Error for url: GET /api/orders/[id]/'),119,2026-11-25T02:45:39Z,2026-11-25T02:47:09Z
+GET,GET /api/orders/ (manager),HTTPError('500 Server Error: Internal Server Error for url: GET /api/orders/ (manager)'),39,2026-11-25T02:45:37Z,2026-11-25T02:47:09Z
+GET,GET /api/categories/,HTTPError('500 Server Error: Internal Server Error for url: GET /api/categories/'),557,2026-11-25T02:45:37Z,2026-11-25T02:47:09Z
+GET,GET /api/staff-calls/,HTTPError('500 Server Error: Internal Server Error for url: GET /api/staff-calls/'),40,2026-11-25T02:45:37Z,2026-11-25T02:47:09Z
+GET,GET /api/reports/summary/,HTTPError('500 Server Error: Internal Server Error for url: GET /api/reports/summary/'),56,2026-11-25T02:45:37Z,2026-11-25T02:47:09Z
+PATCH,PATCH /api/order-items/[id]/status/,HTTPError('500 Server Error: Internal Server Error for url: PATCH /api/order-items/[id]/status/'),20,2026-11-25T02:45:38Z,2026-11-25T02:46:57Z
+GET,GET /api/menu-items/,CatchResponseError(500),488,2026-11-25T02:45:37Z,2026-11-25T02:47:09Z
+POST,POST /api/orders/,CatchResponseError(500),266,2026-11-25T02:45:38Z,2026-11-25T02:47:09Z
+POST,POST /api/staff-calls/,HTTPError('500 Server Error: Internal Server Error for url: POST /api/staff-calls/'),111,2026-11-25T02:45:37Z,2026-11-25T02:47:04Z

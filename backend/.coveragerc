@@ -1,0 +1,7 @@
+[run]
+source = api
+omit =
+    api/migrations/*
+    api/tests*.py
+    api/test_flows.py
+    api/tests_unit/*

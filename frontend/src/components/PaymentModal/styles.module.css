@@ -1,0 +1,24 @@
+.amount{display:flex;justify-content:space-between;align-items:center;padding:var(--sp-3) var(--sp-4);border-radius:var(--r-md);background:var(--surface-2);color:var(--ink-2);font-size:var(--fs-13)}
+.amountSkel{width:120px;height:28px}
+.amount b{font:500 var(--fs-22)/1.2 var(--font-display);font-weight:700;font-family:var(--font-ui);color:var(--price)}
+.methods{display:grid;gap:var(--sp-3)}
+.methods button{display:flex;align-items:center;gap:var(--sp-4);text-align:left;padding:var(--sp-4);border:1px solid var(--line-strong);border-radius:var(--r-md);background:var(--surface);color:var(--ink);transition:border-color var(--dur-1) var(--ease),background var(--dur-1) var(--ease)}
+.methods button:hover:not(:disabled){border-color:var(--brand);background:var(--brand-soft)}
+.methods button:disabled{opacity:.5;cursor:wait}
+.methods b{display:block;font-size:var(--fs-14);font-weight:600}
+.methods small{display:block;margin-top:2px;font-size:var(--fs-12);color:var(--ink-2)}
+.methodIcon{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:var(--r-md);background:var(--brand-soft);color:var(--brand)}
+.transfer,.cash,.done{display:grid;justify-items:center;gap:var(--sp-3);text-align:center}
+.qr{width:min(280px,100%);aspect-ratio:1;image-rendering:pixelated;padding:var(--sp-2);border-radius:var(--r-md);background:#fff;border:1px solid var(--line)}
+.hint{margin:0;font-size:var(--fs-14);line-height:1.6;color:var(--ink-2)}
+.waiting{margin:0;display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-13);font-weight:600;color:var(--ok)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:1}}
+.actions{display:flex;gap:var(--sp-2);flex-wrap:wrap;justify-content:center}
+.sandbox{font-size:var(--fs-12);color:var(--ink-2)}
+.tick{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--ok-soft);color:var(--ok)}
+
+.bank{width:100%;display:grid;gap:var(--sp-2);margin:0;text-align:left}
+.bank div{display:flex;justify-content:space-between;gap:var(--sp-3);padding:var(--sp-2) var(--sp-3);border-radius:var(--r-md);background:var(--surface-2);font-size:var(--fs-13)}
+.bank dt{color:var(--ink-2)}
+.bank dd{margin:0;font-weight:600;text-align:right;word-break:break-all}

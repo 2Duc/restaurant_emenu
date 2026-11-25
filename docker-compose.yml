@@ -1,0 +1,60 @@
+# Chạy toàn bộ: docker compose up -d --build
+# Đặt HOST_IP (IP LAN của máy) trong .env ở gốc -> mọi link đổi theo. VITE_* là build-arg: đổi IP phải build lại frontend.
+# Web: http://${HOST_IP}:${FRONTEND_PORT:-8080}   API: http://${HOST_IP}:8000/api/
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: e_menu
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d e_menu"]
+      interval: 5s
+      retries: 10
+  redis:
+    image: redis:7-alpine
+  backend:
+    build: ./backend
+    depends_on:
+      db: { condition: service_healthy }
+      redis: { condition: service_started }
+    environment:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:-compose-local-secret-change-me-0123456789}
+      DJANGO_DEBUG: "1"
+      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1,backend,${HOST_IP:-localhost}
+      CORS_ALLOWED_ORIGINS: http://localhost:${FRONTEND_PORT:-8080},http://127.0.0.1:${FRONTEND_PORT:-8080},http://localhost:5173,http://${HOST_IP:-localhost}:${FRONTEND_PORT:-8080}
+      CSRF_TRUSTED_ORIGINS: http://localhost:${FRONTEND_PORT:-8080},http://127.0.0.1:${FRONTEND_PORT:-8080},http://localhost:8000,http://127.0.0.1:8000,http://${HOST_IP:-localhost}:${FRONTEND_PORT:-8080},http://${HOST_IP:-localhost}:8000
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/e_menu
+      REDIS_URL: redis://redis:6379/0
+      MEDIA_ROOT: /data/media
+      SEED_DEMO_PASSWORD: ${SEED_DEMO_PASSWORD:-Demo@12345}
+      PAYMENT_GATEWAY_MODE: ${PAYMENT_GATEWAY_MODE:-mock}
+      VNPAY_TMN_CODE: ${VNPAY_TMN_CODE:-}
+      VNPAY_HASH_SECRET_KEY: ${VNPAY_HASH_SECRET_KEY:-}
+      VNPAY_RETURN_URL: http://${HOST_IP:-localhost}:8000/api/payments/vnpay-return/
+      VNPAY_IPN_URL: http://${HOST_IP:-localhost}:8000/api/payments/vnpay-ipn/
+      FRONTEND_RETURN_URL: http://${HOST_IP:-localhost}:${FRONTEND_PORT:-8080}/payment-result
+      FRONTEND_BASE_URL: http://${HOST_IP:-localhost}:${FRONTEND_PORT:-8080}
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-}
+      WEB_CONCURRENCY: ${WEB_CONCURRENCY:-3}   # so tien trinh uvicorn (WS xuyen tien trinh qua Redis); tong ket noi DB = so tien trinh x DB_POOL_MAX
+      NUM_PROXIES: ${NUM_PROXIES:-0}   # RATE-01: client noi thang backend:8000 (khong proxy); dat 1 neu co dung 1 reverse proxy truoc backend
+    volumes: [media:/data/media]
+    ports: ["8000:8000"]
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: http://${HOST_IP:-localhost}:8000/api
+        VITE_WS_BASE_URL: ws://${HOST_IP:-localhost}:8000
+        VITE_MEDIA_BASE_URL: http://${HOST_IP:-localhost}:8000
+        VITE_PUBLIC_URL: http://${HOST_IP:-localhost}:${FRONTEND_PORT:-8080}
+    environment:
+      CSP_CONNECT_SRC: http://${HOST_IP:-localhost}:8000 ws://${HOST_IP:-localhost}:8000 http://localhost:8000 ws://localhost:8000
+      CSP_IMG_SRC: http://${HOST_IP:-localhost}:8000 http://localhost:8000
+    depends_on: [backend]
+    ports: ["${FRONTEND_PORT:-8080}:80"]
+volumes:
+  pgdata:
+  media:

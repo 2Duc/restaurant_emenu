@@ -1,0 +1,13 @@
+.lines{display:grid;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:var(--sp-2) 0}
+.line{display:flex;justify-content:space-between;gap:var(--sp-3);padding:var(--sp-2) 0;font-size:var(--fs-14)}
+.line small{display:block;font-size:var(--fs-12);color:var(--ink-2);margin-top:2px}
+.sum{display:flex;justify-content:space-between;padding:var(--sp-1) 0;font-size:var(--fs-14);color:var(--ink-2)}
+.sum b{color:var(--ink);font-weight:600}
+.minus{color:var(--ok)!important}
+.total{margin-top:var(--sp-1);padding-top:var(--sp-3);border-top:1px solid var(--line);font-size:var(--fs-18);color:var(--ink)}
+.total b{color:var(--accent-ink);font-weight:700}
+.paid{text-align:center;font-size:var(--fs-13);margin:0;font-weight:500}
+.paidOk{color:var(--ok)}
+.paidOff{color:var(--ink-2)}
+
+.note{margin:0;font-size:var(--fs-12);color:var(--ink-2);text-align:center}

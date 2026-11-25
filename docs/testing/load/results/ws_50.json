@@ -1,0 +1,13 @@
+{
+  "n": 50,
+  "connected": 50,
+  "failed": 0,
+  "connect_ms_p50": 208.9,
+  "connect_ms_p95": 228.0,
+  "connect_ms_max": 269.3,
+  "ping_ms_p50": 37.7,
+  "ping_ms_p95": 41.1,
+  "broadcast_receivers": 2,
+  "broadcast_ms_p95": 273.4,
+  "errors": []
+}

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ABC Restaurant - Style guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&subset=vietnamese,latin&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+<link rel="stylesheet" href="../frontend/src/styles/tokens.css" />
+<link rel="stylesheet" href="../frontend/src/styles/base.css" />
+<link rel="stylesheet" href="../frontend/src/styles/ui.css" />
+<style>
+  body { background: var(--bg); }
+  .sg-bar { position: sticky; top: 0; z-index: 5; background: var(--head-bg); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: var(--head-ink); box-shadow: var(--head-shadow); }
+  .sg-wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--sp-4); }
+  .sg-brand { display: flex; align-items: center; gap: var(--sp-3); height: 64px; }
+  .mono { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--gold); font: 600 11px/1 var(--font-display); color: var(--brand-deep); }
+  .wm { font: 600 21px/1 var(--font-display); letter-spacing: -.01em; color: var(--brand-deep); }
+  .tag { margin-left: auto; font-size: var(--fs-13); color: var(--ink-2); }
+  section { padding: var(--sp-14) 0 0; }
+  h2.sg { font: 500 var(--fs-22)/1.2 var(--font-display); margin-bottom: var(--sp-4); display: flex; gap: var(--sp-3); align-items: baseline; }
+  h2.sg::after { content: ""; flex: 1; height: 1px; background: var(--line-strong); align-self: center; }
+  .eyebrow { font-size: var(--fs-12); font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+  .dish .eyebrow { color: #8A6A35; }
+  .row { display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center; }
+  .grid { display: grid; gap: var(--sp-4); }
+  .g3 { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  .g2 { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+  .sw { border: 1px solid rgba(15,61,46,.06); box-shadow: var(--shadow-1); border-radius: var(--r-lg); overflow: hidden; background: var(--surface); }
+  .sw i { display: block; height: 64px; }
+  .sw div { padding: var(--sp-2) var(--sp-3); font-size: var(--fs-12); line-height: 1.5; color: var(--ink-2); }
+  .sw b { display: block; font-size: var(--fs-13); color: var(--ink); }
+  .ok { color: var(--ok); font-weight: 600; } .no { color: var(--danger); font-weight: 600; }
+  .static { position: static !important; transform: none !important; opacity: 1 !important; animation: none !important; }
+  .stage { background: var(--overlay); padding: var(--sp-6); border-radius: var(--r-xl); display: grid; place-items: center; }
+  .dish { background: var(--surface); border: 1px solid rgba(15,61,46,.05); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-1); max-width: 260px; }
+  .dish .ph { aspect-ratio: 4/3; background: linear-gradient(135deg, #F6C9A8, #E9A072); display: grid; place-items: center; color: rgba(255,255,255,.85); }
+  .dish .bd { padding: var(--sp-3); display: grid; gap: 6px; }
+  .dish h3 { font: 500 var(--fs-18)/1.25 var(--font-display); letter-spacing: -.01em; }
+  .dish .bd { padding: var(--sp-5) !important; }
+  .gh { position: relative; padding-bottom: 12px; font: 500 28px/1.15 var(--font-display); letter-spacing: -.02em; margin-bottom: 16px; }
+  .gh::before { content: '01 4 '; font: 500 12px/1 var(--font-ui); letter-spacing: .16em; color: var(--gold); margin-right: 8px; }
+  .gh::after { content: ''; position: absolute; left: 0; bottom: 0; width: 32px; height: 1px; background: var(--gold); }
+  .dish p { font-size: var(--fs-13); color: var(--ink-2); }
+  .dish .ft { display: flex; justify-content: space-between; align-items: center; padding-top: var(--sp-2); }
+  .price { font-weight: 600; color: var(--accent-ink); font-variant-numeric: tabular-nums; }
+  .add { width: 36px; height: 36px; border-radius: 50%; background: var(--grad-cta); box-shadow: 0 4px 10px rgba(18,128,90,.25); color: #fff; border: 0; font-size: 20px; }
+  .ticket { background: var(--surface); border: 1px solid rgba(15,61,46,.05); border-left: 4px solid var(--warn); border-radius: var(--r-lg); padding: var(--sp-4); box-shadow: var(--shadow-1); max-width: 300px; display: grid; gap: var(--sp-2); }
+  .ticket .hd { display: flex; justify-content: space-between; align-items: baseline; }
+  .ticket .tb { font: 600 28px/1 var(--font-display); }
+  .ticket .tm { color: var(--warn); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .ticket li { list-style: none; font-size: var(--fs-16); font-weight: 600; display: flex; justify-content: space-between; }
+  .note { background: var(--warn-soft); padding: var(--sp-2) var(--sp-3); border-radius: var(--r-sm); font-size: var(--fs-13); }
+  .dockdemo { display: flex; align-items: center; justify-content: space-between; background: var(--head-bg); box-shadow: 0 -6px 20px rgba(15,61,46,.07); border-radius: var(--r-xl); padding: var(--sp-3) var(--sp-4); max-width: 480px; }
+  .bubble { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px; margin-right: 4px; border-radius: 999px; background: var(--accent); color: var(--ink); font-size: 13px; font-weight: 700; }
+  .scale > div { display: flex; gap: var(--sp-4); align-items: baseline; padding: 6px 0; border-bottom: 1px solid var(--line); }
+  .scale small { width: 48px; color: var(--ink-3); font-size: 12px; flex: none; }
+  footer { padding: var(--sp-14) 0; color: var(--ink-3); font-size: var(--fs-13); }
+</style>
+</head>
+<body>
+<header class="sg-bar"><div class="sg-wrap sg-brand">
+  <span class="mono">ABC</span><span class="wm">ABC Restaurant</span>
+  <span class="tag">Style guide · Basil Soft · Soft · Fine-dining</span>
+</div></header>
+
+<main class="sg-wrap">
+
+<section>
+  <h2 class="sg">Thương hiệu</h2>
+  <div class="row">
+    <div style="background:linear-gradient(160deg,#E3F4EC,#F7FAF5 55%,#FFEDE4 130%);padding:var(--sp-6);border-radius:var(--r-xl);display:flex;gap:var(--sp-3);align-items:center;min-width:300px;box-shadow:var(--shadow-1)">
+      <span class="mono" style="width:48px;height:48px;font-size:13px">ABC</span>
+      <div><div class="wm" style="font-size:26px">ABC Restaurant</div><div style="font-size:13px;color:var(--ink-2);margin-top:6px">Hương vị Việt, nấu mỗi ngày</div></div>
+    </div>
+    <div class="card" style="display:flex;gap:var(--sp-3);align-items:center">
+      <span class="mono" style="width:48px;height:48px">ABC</span>
+      <div><div class="wm" style="font-size:26px">ABC Restaurant</div><div class="eyebrow" style="margin-top:6px">Thực đơn</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sg">Bảng màu</h2>
+  <div class="grid g3" id="palette"></div>
+  <p style="margin-top:var(--sp-3);font-size:13px;color:var(--ink-2)">Tỉ lệ tương phản tính tự động: chữ trắng trên màu, chữ --ink trên màu. Ngưỡng đạt 4.5:1.</p>
+</section>
+
+<section>
+  <h2 class="sg">Chữ</h2>
+  <div class="scale">
+    <div><small>36</small><span style="font:600 36px/1.2 var(--font-display)">Hương vị Việt, nấu mỗi ngày</span></div>
+    <div><small>28</small><span style="font:600 28px/1.2 var(--font-display)">Phở bò tái nạm gầu</span></div>
+    <div><small>22</small><span style="font:600 22px/1.2 var(--font-display)">Khai vị · Món thịt · Hải sản</span></div>
+    <div><small>18</small><span style="font-size:18px;font-weight:600">Plus Jakarta Sans 600 - Tiêu đề mục</span></div>
+    <div><small>16</small><span style="font-size:16px">Plus Jakarta Sans 400 - Cơm tấm sườn bì chả, ăn kèm canh và đồ chua.</span></div>
+    <div><small>14</small><span style="font-size:14px">Chữ nội dung nhân viên: Bàn 05 đang chờ xác nhận món.</span></div>
+    <div><small>13</small><span style="font-size:13px;color:var(--ink-2)">Chữ phụ 13px - mô tả ngắn, ghi chú</span></div>
+    <div><small>12</small><span class="eyebrow">Nhãn nhỏ viết hoa tracking .12em</span></div>
+    <div><small>num</small><span class="price" style="font-size:22px">125.000 ₫ &nbsp; 1.245.000 ₫</span></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sg">Nút</h2>
+  <div class="row" style="margin-bottom:var(--sp-3)">
+    <button class="btn btn-primary">Xem giỏ</button>
+    <button class="btn btn-secondary">Thứ cấp</button>
+    <button class="btn btn-ghost">Ghost</button>
+    <button class="btn btn-danger">Huỷ đơn</button>
+  </div>
+  <div class="row" style="margin-bottom:var(--sp-3)">
+    <button class="btn btn-primary btn-sm">Nhỏ</button>
+    <button class="btn btn-primary">Vừa</button>
+    <button class="btn btn-primary btn-lg">Lớn</button>
+  </div>
+  <div class="row" style="margin-bottom:var(--sp-3)">
+    <button class="btn btn-primary" disabled>Disabled</button>
+    <button class="btn btn-secondary" disabled>Disabled</button>
+    <button class="btn btn-primary" aria-busy="true">Đang gửi</button>
+    <button class="btn btn-secondary" aria-busy="true">Đang gửi</button>
+  </div>
+  <div style="max-width:360px"><button class="btn btn-primary btn-lg btn-block">Đăng nhập (block)</button></div>
+</section>
+
+<section>
+  <h2 class="sg">Form</h2>
+  <div class="grid g3">
+    <div class="field"><label>Tên đăng nhập</label><input class="input" placeholder="Nhập tên đăng nhập" /><span class="field-hint">Dùng tài khoản nhân viên.</span></div>
+    <div class="field"><label>Mật khẩu</label><input class="input" type="password" value="abc" aria-invalid="true" /><span class="field-error">Mật khẩu không đúng.</span></div>
+    <div class="field"><label>Khu vực</label><select class="select"><option>Khu A</option><option>Khu B</option></select></div>
+    <div class="field"><label>Đã khoá</label><input class="input" value="Không sửa được" disabled /></div>
+    <div class="field" style="grid-column:1/-1"><label>Ghi chú món</label><textarea class="textarea" placeholder="Ít cay, không hành"></textarea></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sg">Badge · Chip · Tab</h2>
+  <div class="row" style="margin-bottom:var(--sp-4)">
+    <span class="badge badge-ok">Đã thanh toán</span><span class="badge badge-warn">Đang nấu</span>
+    <span class="badge badge-danger">Đã huỷ</span><span class="badge badge-info">Chờ xác nhận</span>
+    <span class="badge badge-neutral">Hết món</span><span class="badge badge-brand">Bán chạy</span>
+  </div>
+  <div class="row" style="margin-bottom:var(--sp-4)">
+    <button class="chip is-active">Tất cả</button><button class="chip">Khai vị</button><button class="chip">Món thịt</button><button class="chip">Hải sản</button><button class="chip">Đồ uống</button>
+  </div>
+  <div class="tabs" style="max-width:420px"><button class="tab is-active">Đang mở</button><button class="tab">Đã xong</button><button class="tab">Tất cả</button></div>
+</section>
+
+<section>
+  <div class="gh">Khai vị</div>
+  <h2 class="sg">Thẻ món · Vé bếp · Thanh giỏ hàng</h2>
+  <div class="row" style="align-items:flex-start;gap:var(--sp-6)">
+    <div class="dish">
+      <div class="ph"><span class="material-symbols-outlined" style="font-size:40px">restaurant</span></div>
+      <div class="bd"><span class="eyebrow">Món đặc trưng</span><h3>Bò lúc lắc khoai tây</h3><p>Thăn bò xào lửa lớn, tỏi, ớt chuông, ăn kèm khoai chiên.</p>
+        <div class="ft"><span class="price">185.000 ₫</span><button class="add" aria-label="Thêm">+</button></div></div>
+    </div>
+    <div class="ticket">
+      <div class="hd"><span class="tb">Bàn 05</span><span class="tm">12 phút</span></div>
+      <ul style="display:grid;gap:6px;padding:0"><li><span>Phở bò tái</span><span>x2</span></li><li><span>Gỏi cuốn tôm thịt</span><span>x1</span></li></ul>
+      <div class="note">Ít hành, không ngò.</div>
+      <button class="btn btn-primary">Bắt đầu nấu</button>
+    </div>
+    <div style="display:grid;gap:var(--sp-4);flex:1;min-width:300px">
+      <div class="dockdemo"><div><b><span class="bubble">3</span>món</b><div class="price" style="font-size:14px">245.000 ₫</div></div><button class="btn btn-primary">Xem giỏ</button></div>
+      <div class="skeleton" style="height:20px;border-radius:6px"></div>
+      <div class="skeleton" style="height:20px;width:60%;border-radius:6px"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sg">Card · Bảng</h2>
+  <div class="grid g2">
+    <div class="card"><div class="eyebrow">Doanh thu hôm nay</div><div style="font:600 28px/1.2 var(--font-ui);font-variant-numeric:tabular-nums;margin:6px 0">12.450.000 ₫</div><span class="badge badge-ok">+8% so với hôm qua</span></div>
+    <div class="card" style="border-left:3px solid var(--accent)"><div class="eyebrow">KPI nổi bật</div><div style="font:600 28px/1.2 var(--font-ui);margin:6px 0">48 đơn</div><span style="font-size:13px;color:var(--ink-2)">Cao nhất trong tuần</span></div>
+  </div>
+  <div class="card" style="padding:0;margin-top:var(--sp-4);overflow-x:auto"><table class="table">
+    <thead><tr><th>Đơn</th><th>Bàn</th><th>Trạng thái</th><th class="num">Tổng</th></tr></thead>
+    <tbody>
+      <tr><td>#1042</td><td>05</td><td><span class="badge badge-warn">Đang nấu</span></td><td class="num"><span class="price">245.000 ₫</span></td></tr>
+      <tr><td>#1041</td><td>12</td><td><span class="badge badge-ok">Đã thanh toán</span></td><td class="num"><span class="price">560.000 ₫</span></td></tr>
+      <tr><td>#1040</td><td>03</td><td><span class="badge badge-danger">Đã huỷ</span></td><td class="num"><span class="price">0 ₫</span></td></tr>
+    </tbody></table></div>
+</section>
+
+<section>
+  <h2 class="sg">Modal · Empty · Toast</h2>
+  <div class="stage"><div class="modal modal-sm static" role="dialog" style="position:relative !important">
+    <div class="modal-head"><div><span class="modal-eyebrow">Bàn 05</span><h3 class="modal-title">Thanh toán đơn #1042</h3></div><button class="modal-close" aria-label="Đóng"><span class="material-symbols-outlined">close</span></button></div>
+    <p style="margin:var(--sp-3) 0;color:var(--ink-2)">Tổng cộng <span class="price">245.000 ₫</span></p>
+    <div class="modal-foot"><button class="btn btn-secondary">Để sau</button><button class="btn btn-primary">Thanh toán</button></div>
+  </div></div>
+  <div class="grid g2" style="margin-top:var(--sp-4)">
+    <div class="card"><div class="empty"><span class="material-symbols-outlined empty-icon">receipt_long</span><div class="empty-title">Chưa có đơn nào</div><p>Đơn mới của khách sẽ hiện ở đây.</p><button class="btn btn-secondary btn-sm">Làm mới</button></div></div>
+    <div style="display:grid;gap:var(--sp-3);align-content:start">
+      <div class="toast toast-ok static" style="display:inline-flex"><span class="material-symbols-outlined toast-icon">check_circle</span>Đã gửi yêu cầu gọi phục vụ</div>
+      <div class="toast static" style="display:inline-flex"><span class="material-symbols-outlined toast-icon">info</span>Món đã được thêm vào giỏ</div>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="sg-wrap">Tokens: ../frontend/src/styles/tokens.css · Components: ui.css</div></footer>
+
+<script>
+(function () {
+  function lum(h){var c=[1,3,5].map(function(i){var v=parseInt(h.substr(i,2),16)/255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2];}
+  function cr(a,b){var x=lum(a),y=lum(b);return ((Math.max(x,y)+.05)/(Math.min(x,y)+.05));}
+  var t=[['--brand-deep','Wordmark, chữ nhấn xanh đậm'],['--ink-bar','Nền hero / toast'],['--brand','CTA, link, focus'],['--brand-hover','CTA hover'],['--brand-soft','Nền brand nhạt'],['--gold','Vàng đồng: đường kẻ, monogram, số danh mục'],['--accent','Nhấn: monogram, vạch active, sao'],['--accent-ink','Giá, chữ nhấn nhỏ'],['--accent-soft','Nền nhấn nhạt'],['--bg','Nền khách'],['--bg-staff','Nền nhân viên'],['--surface','Card'],['--surface-2','Nền phụ'],['--line','Đường kẻ'],['--line-strong','Viền input'],['--ink','Chữ chính'],['--ink-2','Chữ phụ'],['--ink-3','Chữ mờ (>=14px)'],['--ok','Thành công'],['--ok-soft','Nền ok'],['--warn','Chờ / đang nấu'],['--warn-soft','Nền warn'],['--danger','Huỷ / lỗi'],['--danger-soft','Nền danger'],['--info','Trung tính'],['--info-soft','Nền info']];
+  var cs=getComputedStyle(document.documentElement),el=document.getElementById('palette'),ink=cs.getPropertyValue('--ink').trim().toUpperCase();
+  el.innerHTML=t.map(function(r){var hex=cs.getPropertyValue(r[0]).trim().toUpperCase(),w=cr(hex,'#FFFFFF'),k=cr(hex,ink);
+    function f(v){return '<span class="'+(v>=4.5?'ok':'no')+'">'+v.toFixed(1)+':1</span>';}
+    return '<div class="sw"><i style="background:'+hex+';border-bottom:1px solid var(--line)"></i><div><b>'+r[0]+' · '+hex+'</b>'+r[1]+'<br>vs trắng '+f(w)+' · vs ink '+f(k)+'</div></div>';}).join('');
+})();
+</script>
+</body>
+</html>
